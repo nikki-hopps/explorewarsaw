@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Explore Warsaw · The room</title>
+  <meta name="description" content="Step into the Explore Warsaw room: this weekend's events, the book and projects for expats.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="room.css">
+</head>
+<body class="room-page">
+  <div class="viewport" id="viewport">
+    <div class="scene" id="scene">
+      <img id="room-img" class="room-img" alt="A cozy study overlooking the Palace of Culture and Science in Warsaw" decoding="async">
+      <!-- Hotspots are added by room.js from the HOTSPOTS list. -->
+    </div>
+  </div>
+
+  <header class="hud">
+    <a class="logo" href="room.html">Explore<span>Warsaw</span></a>
+    <p class="hint" id="hint">Tap the objects in the room</p>
+    <a class="listlink" href="index.html">Plain list view</a>
+  </header>
+
+  <dialog id="panel" class="panel" aria-labelledby="panel-title">
+    <button class="close" id="panel-close" aria-label="Close">×</button>
+    <div id="panel-body"></div>
+  </dialog>
+
+  <script src="data/site.js"></script>
+  <script src="data/events.js"></script>
+  <script src="room.js"></script>
+</body>
+</html>

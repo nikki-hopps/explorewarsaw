@@ -1,0 +1,79 @@
+/* The room: a fixed 16:9 scene. On narrow screens it scrolls sideways. */
+.room-page { background: #0e0c0a; overflow: hidden; }
+
+.viewport { position: fixed; inset: 0; overflow: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.viewport::-webkit-scrollbar { display: none; }
+
+.scene {
+  position: relative;
+  width: max(100vw, calc(100svh * 16 / 9));
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(180deg, #1c2a44 0%, #3a2c24 60%, #2a1f18 100%); /* shown until the photo loads */
+}
+.room-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .8s ease; }
+.room-img.ready { opacity: 1; }
+
+/* Hotspots: invisible rectangles over objects, with a small pin so people know to tap. */
+.hotspot {
+  position: absolute; left: var(--x); top: var(--y); width: var(--w); height: var(--h);
+  background: transparent; border: 0; border-radius: 12px; cursor: pointer; padding: 0;
+}
+.hotspot .pin {
+  position: absolute; left: 50%; top: 50%; translate: -50% -50%;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(255, 255, 255, .92); box-shadow: 0 0 0 0 rgba(246, 195, 43, .7);
+  animation: pulse 2.4s ease-out infinite;
+}
+.hotspot .pin::after { content: ""; position: absolute; inset: 7px; border-radius: 50%; background: var(--red); }
+.hotspot .tip {
+  position: absolute; left: 50%; top: calc(50% + 20px); translate: -50% 0; white-space: nowrap;
+  background: rgba(20, 18, 16, .88); color: #fff; font-size: .82rem; font-weight: 600;
+  padding: 5px 11px; border-radius: 99px; opacity: 0; pointer-events: none; transition: opacity .2s;
+}
+.hotspot:hover .tip, .hotspot:focus-visible .tip { opacity: 1; }
+.hotspot:hover, .hotspot:focus-visible { background: rgba(255, 255, 255, .08); }
+.hotspot:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(246, 195, 43, .65); }
+  70% { box-shadow: 0 0 0 16px rgba(246, 195, 43, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(246, 195, 43, 0); }
+}
+@media (prefers-reduced-motion: reduce) { .hotspot .pin { animation: none; } .room-img { transition: none; } }
+
+/* Debug mode (?debug): outlines + click-to-read coordinates. */
+.debug .hotspot { outline: 2px dashed rgba(246, 195, 43, .9); background: rgba(246, 195, 43, .12); }
+.coords {
+  position: fixed; left: 12px; bottom: 12px; z-index: 5; background: #000c; color: #fff;
+  font: 13px/1.4 ui-monospace, monospace; padding: 8px 12px; border-radius: 8px;
+}
+
+/* Heads-up display */
+.hud {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 3; pointer-events: none;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding: max(14px, env(safe-area-inset-top)) 16px 14px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .55), transparent);
+}
+.hud > * { pointer-events: auto; }
+.hud .logo { color: #fff; }
+.hud .hint { margin: 0; color: #fffc; font-size: .85rem; }
+.hud .listlink { color: #fff; font-size: .85rem; font-weight: 500; }
+@media (max-width: 640px) { .hud .hint { display: none; } }
+
+/* Panels */
+.panel {
+  width: min(680px, calc(100vw - 24px)); max-height: min(82svh, 720px); overflow: auto;
+  border: 0; border-radius: 18px; padding: 28px 24px 24px;
+  background: var(--bg); color: var(--text); box-shadow: 0 30px 80px #0009;
+}
+.panel::backdrop { background: rgba(10, 8, 6, .6); backdrop-filter: blur(3px); }
+.panel h2 { font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: .4em; }
+.panel .close {
+  position: absolute; top: 10px; right: 12px; width: 36px; height: 36px; border-radius: 50%;
+  border: 0; background: var(--surface); color: var(--text); font-size: 1.4rem; line-height: 1; cursor: pointer;
+}
+.panel .event-list { grid-template-columns: 1fr; }
+.panel .day h3 { margin-top: 20px; }
+.panel .book-panel { display: grid; gap: 20px; grid-template-columns: 150px 1fr; align-items: start; }
+.panel .book-panel .book-cover { font-size: 1rem; padding: 12px; }
+@media (max-width: 520px) { .panel .book-panel { grid-template-columns: 1fr; } .panel .book-panel .book-cover { max-width: 140px; } }

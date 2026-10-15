@@ -16,16 +16,22 @@ Plain HTML, CSS and JavaScript. No build step, no server, no secret keys.
 
 ```
 site/
-  index.html        the page
+  room.html         the clickable room (front door): objects open events, book, projects
+  room.js/.css      the room's hotspots, panels and time-of-day logic
+  index.html        the plain list version of the site
   styles.css        design (Warsaw tram red & yellow)
   app.js            renders events, book and projects from the data files
   thanks.html       shown after a successful Stripe payment
   data/site.js      book details, Stripe link, projects, Instagram/email  ← edit this
   data/events.js    this weekend's events                               ← replace weekly
-  assets/           put your book cover image here
+  assets/           room pictures and the book cover (see assets/README.md)
 ```
 
-To preview it, open `site/index.html` in a browser.
+To preview it, open `site/room.html` (the room) or `site/index.html` (the plain list) in a browser.
+
+### The room
+
+`room.html` shows a picture of the room. Tap an object to open its panel: laptop → this weekend's events, book → the book and checkout, armchair → projects, lamp → Instagram. The picture changes with the Warsaw season and time of day once you add the matching files (see `site/assets/README.md`). Add `?debug` to the address to see the hotspot outlines and read click coordinates for adjusting them in `room.js`.
 
 ### Weekly routine
 

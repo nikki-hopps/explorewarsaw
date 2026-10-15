@@ -69,6 +69,17 @@ Options researched: own photos (best), licensed stock, paid timelapses (e.g. Kur
 - Clickable hotspots: book opens checkout, corkboard opens events, tram map opens projects.
 - Phones: wide room scrolls sideways, with a plain list as fallback.
 
+### 7. Decisions on the window
+- Looked at real sources: Google Maps imagery is off-limits (copyright and terms), free photos (Pexels, Wikimedia Commons) have no confirmed high-window angle, paid timelapses cost money.
+- **Decision:** keep the AI-generated window for now. Real photo stays an option for later.
+
+### 8. The clickable room (first version)
+- `site/room.html`: 16:9 room picture, tap hotspots (laptop → events, book → checkout, armchair → projects, lamp → Instagram), panels use the native `<dialog>`.
+- Picture chosen from the Warsaw season and hour, with a fallback to autumn dusk.
+- Phones: the room scrolls sideways and opens centred on the Palace.
+- Tested with Playwright on desktop and phone sizes: all four hotspots open the right panel.
+- **Gotcha:** the room images available to Claude's session were 199×112 previews. The full-size file must be downloaded from Canva and added to `site/assets/`.
+
 ## Prompts that worked
 - Keep the same room, camera angle and composition; change only one thing at a time.
 - Describe lighting physically: cool dusk light from the window, warm pool of light from the lamp, matching shadows.
