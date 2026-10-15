@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Explore Warsaw</title>
+  <meta name="description" content="The best English-friendly events in Warsaw every weekend, plus guides and projects for expats.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="#top">Explore<span>Warsaw</span></a>
+    <nav>
+      <a href="#events">Events</a>
+      <a href="#book">Book</a>
+      <a href="#projects">Projects</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">For expats &amp; the curious</p>
+      <h1>What's on in Warsaw <em>this weekend</em></h1>
+      <p class="lede">A short, hand-picked list every week. English-language events first, then the big ones worth going to anyway.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#events">See this weekend</a>
+        <a class="btn ghost" href="#book">Get the book</a>
+      </div>
+      <div class="tram" aria-hidden="true"><span></span></div>
+    </section>
+
+    <section id="events" class="section">
+      <div class="section-head">
+        <h2>Events <span id="weekend-label" class="muted"></span></h2>
+        <div class="filters" role="group" aria-label="Filter events">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="english">In English</button>
+          <button class="chip" data-filter="free">Free</button>
+        </div>
+      </div>
+      <div id="event-days"></div>
+      <noscript><p>Turn on JavaScript to see this weekend's events, or follow us on Instagram.</p></noscript>
+    </section>
+
+    <section id="book" class="section book">
+      <div class="book-cover" id="book-cover"></div>
+      <div class="book-body">
+        <p class="eyebrow">The book</p>
+        <h2 id="book-title"></h2>
+        <p class="book-sub" id="book-subtitle"></p>
+        <p id="book-blurb"></p>
+        <ul id="book-highlights" class="ticks"></ul>
+        <div class="buy">
+          <span class="price" id="book-price"></span>
+          <a class="btn primary" id="buy-btn">Buy now</a>
+        </div>
+        <p class="muted small" id="book-format"></p>
+        <p class="muted small">Secure checkout by Stripe. Cards, Apple Pay, Google Pay and BLIK where available.</p>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>More for expats</h2>
+      <div class="cards" id="project-cards"></div>
+    </section>
+
+    <section class="section cta">
+      <h2>Never miss a weekend</h2>
+      <p>New picks every week on Instagram.</p>
+      <a class="btn primary" id="ig-btn">Follow @explorewarsaw</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Explore Warsaw · <a id="mail-link">Contact</a></p>
+  </footer>
+
+  <script src="data/site.js"></script>
+  <script src="data/events.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

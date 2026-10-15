@@ -1,0 +1,142 @@
+/* Colours borrowed from Warsaw's red-and-yellow trams. */
+:root {
+  --bg: #fbf7f0;
+  --surface: #ffffff;
+  --text: #1d1a17;
+  --muted: #6b635a;
+  --line: #e7dfd3;
+  --red: #c8102e;
+  --red-ink: #ffffff;
+  --yellow: #f6c32b;
+  --radius: 14px;
+  --max: 1080px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141210;
+    --surface: #1e1b18;
+    --text: #f3ede4;
+    --muted: #a99f93;
+    --line: #34302b;
+    --red: #e23a4f;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 Inter, system-ui, sans-serif;
+}
+a { color: inherit; }
+h1, h2 { font-family: Fraunces, Georgia, serif; line-height: 1.1; margin: 0 0 .5em; }
+h1 { font-size: clamp(2.4rem, 7vw, 4.6rem); font-weight: 800; }
+h1 em { font-style: normal; color: var(--red); }
+h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 600; }
+.muted { color: var(--muted); }
+.small { font-size: .875rem; }
+.eyebrow {
+  text-transform: uppercase; letter-spacing: .12em;
+  font-size: .78rem; font-weight: 600; color: var(--red); margin: 0 0 .75rem;
+}
+
+/* Top bar */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 16px; max-width: var(--max); margin: 0 auto;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+}
+.logo { font-family: Fraunces, serif; font-weight: 800; font-size: 1.25rem; text-decoration: none; }
+.logo span { color: var(--red); }
+.topbar nav { display: flex; gap: 18px; }
+.topbar nav a { text-decoration: none; font-weight: 500; font-size: .95rem; }
+.topbar nav a:hover { color: var(--red); }
+
+/* Layout */
+main { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+.section { padding: 64px 0; border-top: 1px solid var(--line); }
+
+/* Hero */
+.hero { padding: 64px 0 56px; }
+.lede { font-size: 1.15rem; max-width: 36em; color: var(--muted); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.tram { margin-top: 48px; height: 10px; border-radius: 99px; background: var(--yellow); overflow: hidden; }
+.tram span {
+  display: block; width: 30%; height: 100%; border-radius: 99px; background: var(--red);
+  animation: ride 6s ease-in-out infinite alternate;
+}
+@keyframes ride { from { transform: translateX(0); } to { transform: translateX(233%); } }
+@media (prefers-reduced-motion: reduce) { .tram span { animation: none; } }
+
+/* Buttons */
+.btn {
+  display: inline-block; padding: 12px 22px; border-radius: 99px;
+  font-weight: 600; text-decoration: none; border: 2px solid var(--red); cursor: pointer;
+}
+.btn.primary { background: var(--red); color: var(--red-ink); }
+.btn.primary:hover { filter: brightness(1.08); }
+.btn.ghost { color: var(--red); }
+.btn.disabled { opacity: .55; pointer-events: none; }
+
+/* Events */
+.section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; }
+.section-head h2 span { font-size: .55em; font-family: Inter, sans-serif; font-weight: 500; }
+.filters { display: flex; gap: 8px; }
+.chip {
+  font: inherit; font-size: .9rem; padding: 6px 14px; border-radius: 99px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--text); cursor: pointer;
+}
+.chip.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+.day h3 { font-size: 1rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 32px 0 12px; }
+.event-list { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.event {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 18px; display: flex; flex-direction: column; gap: 6px;
+}
+.event h4 { margin: 0; font-size: 1.05rem; line-height: 1.35; }
+.event p { margin: 0; font-size: .92rem; color: var(--muted); }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { font-size: .72rem; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: var(--yellow); color: #1d1a17; }
+.tag.en { background: var(--red); color: #fff; }
+.event a.more { margin-top: auto; padding-top: 6px; font-weight: 600; color: var(--red); font-size: .9rem; }
+.empty { color: var(--muted); padding: 24px 0; }
+
+/* Book */
+.book { display: grid; gap: 40px; grid-template-columns: minmax(0, 320px) 1fr; align-items: center; }
+.book-cover {
+  aspect-ratio: 2 / 3; border-radius: 6px 14px 14px 6px; overflow: hidden;
+  background: linear-gradient(160deg, var(--red), #7d0a1d);
+  box-shadow: 0 24px 48px -20px rgba(0,0,0,.45);
+  display: grid; place-items: center; color: #fff; text-align: center; padding: 24px;
+  font-family: Fraunces, serif; font-size: 1.6rem; font-weight: 800;
+}
+.book-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.book-sub { font-size: 1.1rem; color: var(--muted); margin-top: -.25em; }
+.ticks { padding: 0; list-style: none; }
+.ticks li { padding-left: 1.6em; position: relative; margin: .35em 0; }
+.ticks li::before { content: "✓"; position: absolute; left: 0; color: var(--red); font-weight: 700; }
+.buy { display: flex; align-items: center; gap: 18px; margin: 24px 0 12px; }
+.price { font-family: Fraunces, serif; font-size: 2rem; font-weight: 800; }
+
+/* Projects */
+.cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+.card h3 { margin: 0 0 6px; font-size: 1.15rem; }
+.card p { margin: 0 0 14px; color: var(--muted); }
+.card a { font-weight: 600; color: var(--red); }
+.card span.soon { font-weight: 600; color: var(--muted); }
+
+/* CTA + footer */
+.cta { text-align: center; }
+.cta p { color: var(--muted); }
+.footer { text-align: center; padding: 32px 16px 48px; color: var(--muted); font-size: .9rem; }
+
+@media (max-width: 720px) {
+  .book { grid-template-columns: 1fr; }
+  .book-cover { max-width: 240px; }
+  .topbar nav { gap: 12px; }
+}
