@@ -51,7 +51,13 @@ The site uses a **Stripe Payment Link**: Stripe hosts the checkout page, so card
 
 E-book note: a Payment Link alone does not deliver a file. Either email the file manually from Stripe's payment notifications, or use Stripe's digital-delivery integrations. Don't put a direct download link on `thanks.html`, because anyone could open that page without paying.
 
-### Hosting (free)
+### Hosting (free): GitHub Pages
 
-- **GitHub Pages:** it can only serve from the repo root or `/docs`, so rename `site/` to `docs/`, then go to repo Settings → Pages → deploy from branch `main`, folder `/docs`.
-- **Netlify or Cloudflare Pages:** connect this repo, set the publish directory to `site`, no build command. A custom domain (e.g. explorewarsaw.com) can be added in their settings.
+`.github/workflows/pages.yml` publishes the `site/` folder to GitHub Pages every time `site/` changes on `main`.
+
+1. Merge this branch into `main`.
+2. In the repo, go to Settings → Pages → Build and deployment → Source, and choose **GitHub Actions**.
+3. The site goes live at `https://nikki-hopps.github.io/explorewarsaw/`. A first run can be started by hand from the Actions tab (Deploy site to GitHub Pages → Run workflow).
+4. Custom domain (e.g. explorewarsaw.com): add it in Settings → Pages.
+
+Netlify or Cloudflare Pages also work: connect the repo, set the publish directory to `site`, no build command.

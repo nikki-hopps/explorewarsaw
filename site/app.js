@@ -121,6 +121,11 @@
     );
   }
 
+  // ---------- Room link: only shown once the room picture has been added ----------
+  const roomProbe = new Image();
+  roomProbe.onload = () => { $("room-link").hidden = false; };
+  roomProbe.src = "assets/room-autumn-dusk.jpg";
+
   // ---------- Footer & links ----------
   const ig = safeUrl(site.instagram || "");
   if (ig) $("ig-btn").href = ig;
