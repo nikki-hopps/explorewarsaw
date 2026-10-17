@@ -59,7 +59,7 @@ The core code is in `landing/functions/` and has automated tests (`npm test` ins
 |---|---|
 | `STRIPE_WEBHOOK_SECRET` | the webhook signing secret (`whsec_...`) |
 | `STRIPE_READ_KEY` | the restricted key (`rk_...`) |
-| `EBOOK_PAYMENT_LINK_IDS` | the ids of the Payment Links that include the e-book: the e-book and the bundle, comma separated (`plink_aaa,plink_bbb`) |
+| `EBOOK_PAYMENT_LINK_IDS` | the ids of the Payment Links that include the e-book: the e-book and the bundle, comma separated (`plink_aaa,plink_bbb`). Yours: `plink_1URabb01VxIytCGQG8QksHt6,plink_1URafb01VxIytCGQoMnqOj4S` (e-book, bundle; these ids are not secret) |
 | `DOWNLOAD_SIGNING_SECRET` | a long random string, e.g. `openssl rand -hex 32` |
 | `SITE_URL` | `https://www.explorewarsawguide.com` (no trailing slash) |
 | `EMAIL_API_KEY` | your email provider key |
