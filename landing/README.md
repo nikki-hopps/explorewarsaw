@@ -7,7 +7,7 @@ landing/
   index.html      the page (edit the text directly)
   privacy.html    privacy policy (paste your existing text)
   terms.html      terms of sale and returns (paste your existing text)
-  styles.css      the design (dark, warm, editorial; fonts in assets/fonts)
+  styles.css      the design (night skyline, one glass card; Jost font in assets/fonts)
   thanks.html     where buyers land after paying (shows the e-book link)
   shipping.html, returns.html, terms.html, privacy.html   legal pages to fill in
   app.js          gallery, edition picker, checkout button, cookie banner

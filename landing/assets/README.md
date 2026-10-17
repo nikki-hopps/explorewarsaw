@@ -13,4 +13,4 @@ Drop your photographs here with these names. A missing photo simply shows a quie
 Export as JPEG at about 80 percent quality, under 400 KB each (the hero can be up to 600 KB), so phones load the page quickly.
 After `hero.jpg` exists, uncomment the `og:image` line in `index.html` so links shared on social media show it.
 
-`fonts/` holds the self-hosted typefaces (Cormorant Garamond and Jost, SIL Open Font License). Leave it as it is.
+`fonts/` holds the self-hosted typeface (Jost, SIL Open Font License). Leave it as it is.
