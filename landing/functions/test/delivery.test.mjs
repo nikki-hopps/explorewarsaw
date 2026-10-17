@@ -15,7 +15,7 @@ async function sign(body, secret = WH, t = Math.floor(Date.now() / 1000)) {
   return `t=${t},v1=${hex(await crypto.subtle.sign("HMAC", k, enc.encode(`${t}.${body}`)))}`;
 }
 const kv = () => { const m = new Map(); return { get: async (k) => m.get(k) ?? null, put: async (k, v) => { m.set(k, v); }, m }; };
-const env = (extra = {}) => ({ DOWNLOAD_SIGNING_SECRET: SECRET, STRIPE_WEBHOOK_SECRET: WH, STRIPE_READ_KEY: "rk_test", EBOOK_PAYMENT_LINK_ID: "plink_ebook", SITE_URL: "https://www.explorewarsaw.com", EMAIL_API_KEY: "re_test", MAIL_FROM: "Explore Warsaw <orders@explorewarsaw.com>", EBOOK_PDF_KEY: "book.pdf", EBOOK_EPUB_KEY: "book.epub", ...extra });
+const env = (extra = {}) => ({ DOWNLOAD_SIGNING_SECRET: SECRET, STRIPE_WEBHOOK_SECRET: WH, STRIPE_READ_KEY: "rk_test", EBOOK_PAYMENT_LINK_ID: "plink_ebook", SITE_URL: "https://www.explorewarsawguide.com", EMAIL_API_KEY: "re_test", MAIL_FROM: "Explore Warsaw <orders@explorewarsawguide.com>", EBOOK_PDF_KEY: "book.pdf", EBOOK_EPUB_KEY: "book.epub", ...extra });
 const paid = (over = {}) => ({ id: "cs_test_abc123", payment_status: "paid", payment_link: "plink_ebook", customer_details: { email: "reader@example.com" }, ...over });
 const event = (session, type = "checkout.session.completed") => JSON.stringify({ id: "evt_1", type, data: { object: session } });
 const req = async (body) => new Request("https://x/api/stripe-webhook", { method: "POST", body, headers: { "stripe-signature": await sign(body) } });
@@ -61,7 +61,7 @@ test("webhook: e-book sale emails one 72h link, and a retry does not email again
   assert.equal(await (await webhook({ request: await req(body), env: e })).text(), "Already sent");
   assert.equal(sent.length, 1);
   assert.deepEqual(sent[0].body.to, ["reader@example.com"]);
-  assert.match(sent[0].body.text, /https:\/\/www\.explorewarsaw\.com\/api\/download\?t=/);
+  assert.match(sent[0].body.text, /https:\/\/www\.explorewarsawguide\.com\/api\/download\?t=/);
   assert.match(sent[0].body.text, /72 hours/);
 });
 
@@ -75,7 +75,7 @@ test("claim: gives a link for a paid e-book session, nothing for others", async 
   globalThis.fetch = async () => new Response(JSON.stringify(paid()), { status: 200 });
   const ok = await claim({ request: new Request("https://x/api/claim?session_id=cs_test_abc123"), env: env() });
   const data = await ok.json();
-  assert.match(data.url, /^https:\/\/www\.explorewarsaw\.com\/api\/download\?t=/);
+  assert.match(data.url, /^https:\/\/www\.explorewarsawguide\.com\/api\/download\?t=/);
   globalThis.fetch = async () => new Response(JSON.stringify(paid({ payment_status: "unpaid" })), { status: 200 });
   assert.equal((await claim({ request: new Request("https://x/api/claim?session_id=cs_test_abc123"), env: env() })).status, 404);
   assert.equal((await claim({ request: new Request("https://x/api/claim?session_id=../../etc"), env: env() })).status, 404);
