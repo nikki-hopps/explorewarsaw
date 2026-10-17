@@ -2,53 +2,28 @@
   const $ = (id) => document.getElementById(id);
   const cfg = window.LANDING || {};
 
-  // Only follow https links (the Stripe links come from the HTML).
-  function safeUrl(url) {
-    try {
-      const u = new URL(url, location.href);
-      return u.protocol === "https:" ? u.href : "";
-    } catch { return ""; }
-  }
-
-  // ---------- Hero photo: use assets/hero.jpg once it exists, otherwise the drawn skyline ----------
-  const heroBg = $("hero-bg");
-  if (heroBg) {
-    const probe = new Image();
-    probe.onload = () => heroBg.style.setProperty("--hero-img", `url("${probe.src}")`);
-    probe.src = "assets/hero.jpg";
-  }
-
-  // ---------- Photos: hide a missing image so the placeholder shows ----------
-  document.querySelectorAll(".frame img").forEach((img) => {
-    const miss = () => { img.hidden = true; };
-    img.addEventListener("error", miss);
-    if (img.complete && img.naturalWidth === 0) miss();
-  });
-
-  // ---------- Edition, price and checkout ----------
-  const form = $("buy-form");
-  if (form) {
-    const radios = [...form.querySelectorAll('input[name="edition"]')];
-    const total = $("total"), note = $("note"), btn = $("checkout");
-    function update() {
-      const r = radios.find((x) => x.checked) || radios[0];
-      total.textContent = r.dataset.price;
-      note.textContent = r.dataset.note || "";
-      const link = safeUrl(r.dataset.link || "");
-      if (link) {
-        btn.href = link; btn.removeAttribute("aria-disabled"); btn.textContent = "Checkout";
-        btn.target = "_self"; btn.rel = "noopener";
-      } else {
-        btn.href = "#top"; btn.setAttribute("aria-disabled", "true"); btn.textContent = "Opens soon";
-      }
-    }
-    form.addEventListener("submit", (e) => e.preventDefault());
-    radios.forEach((r) => r.addEventListener("change", update));
-    update();
-  }
-
-  // ---------- Footer bits ----------
+  // ---------- Footer year ----------
   const y = $("year"); if (y) y.textContent = new Date().getFullYear();
+
+  // ---------- Top bar highlights the section you are in; sticky "Shop" bar on phones ----------
+  if ("IntersectionObserver" in window) {
+    const links = {};
+    document.querySelectorAll("[data-nav]").forEach((a) => { links[a.dataset.nav] = a; });
+    const nav = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) Object.keys(links).forEach((k) => links[k].setAttribute("aria-current", String(k === e.target.id)));
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    ["top", "story", "buy", "proof"].forEach((id) => { const el = $(id); if (el) nav.observe(el); });
+
+    const sticky = $("sticky"), cta = document.querySelector(".hero-cta .btn"), cards = document.querySelector(".cards");
+    if (sticky && cta && cards) {
+      let heroOut = false, shopIn = false;
+      const sync = () => { sticky.hidden = !(heroOut && !shopIn); };
+      new IntersectionObserver((e) => { heroOut = !e[0].isIntersecting; sync(); }).observe(cta);
+      new IntersectionObserver((e) => { shopIn = e[0].isIntersecting; sync(); }).observe(cards);
+    }
+  }
 
   // ---------- Cookie banner ----------
   // Essential storage only by default. Optional analytics (config.js) loads only after "Accept".
@@ -79,14 +54,14 @@
   const ok = Object.assign(document.createElement("button"), { type: "button", className: "btn", textContent: cfg.analyticsSrc ? "Accept" : "Got it" });
   row.appendChild(ok);
   if (cfg.analyticsSrc) {
-    const no = Object.assign(document.createElement("button"), { type: "button", className: "btn quiet", textContent: "Essential only" });
+    const no = Object.assign(document.createElement("button"), { type: "button", className: "btn ghost", textContent: "Essential only" });
     no.addEventListener("click", () => { save("essential"); banner.hidden = true; });
     row.appendChild(no);
   }
   ok.addEventListener("click", () => { save("all"); banner.hidden = true; loadAnalytics(); });
   banner.append(text, row);
   document.body.appendChild(banner);
-  // On phones the card sits at the bottom of the first screen: leave room while the banner is open.
+  // While the banner is open it replaces the sticky Shop bar on phones.
   const syncBanner = () => document.documentElement.classList.toggle("consent-open", !banner.hidden);
   new MutationObserver(syncBanner).observe(banner, { attributes: true, attributeFilter: ["hidden"] });
 

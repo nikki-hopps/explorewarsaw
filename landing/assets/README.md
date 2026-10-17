@@ -1,16 +1,17 @@
-# Photos
+# Assets
 
-Drop your photographs here with these names. A missing photo simply shows a quiet placeholder.
+`img/` holds the photos used on the page (all processed for the web):
 
-| File | Where it appears | Suggested shape |
-|---|---|---|
-| `hero.jpg` | Full-width background of the top of the page (the night skyline) | Landscape, at least 2400 px wide, dark and calm in the middle so the headline reads |
-| `ebook.jpg` | Gallery, and shown when "E-book" is chosen | Portrait, 4:5, at least 1400 px tall |
-| `bundle.jpg` | Gallery, and shown when the bundle is chosen | Portrait, 4:5 |
-| `book.jpg` | Gallery, and shown when "Hardcover" is chosen | Portrait, 4:5 |
-| `inside.jpg` | Gallery: a page spread | Portrait, 4:5 |
+| File | Where it appears |
+|---|---|
+| `hands.webp`, `phone.webp` | Transparent cut-outs of the hardcover in hands and the e-book on a phone: the hero and the product cards |
+| `strip-*.jpg` | The slowly moving photo strip under the hero (cover, plane, two page spreads, gift wrapping, coffee table) |
+| `og.jpg` | The 1200 x 630 card shown when the link is shared on social media |
 
-Export as JPEG at about 80 percent quality, under 400 KB each (the hero can be up to 600 KB), so phones load the page quickly.
-After `hero.jpg` exists, uncomment the `og:image` line in `index.html` so links shared on social media show it.
+To add or swap a strip photo, export it at 480 px tall (any width), JPEG at about 80 percent quality, and add a `<figure>` for it in `index.html`. Each photo appears twice in the markup (the second copy has `class="dup"` and an empty `alt`) so the loop is seamless.
 
-`fonts/` holds the self-hosted typeface (Jost, SIL Open Font License). Leave it as it is.
+`fonts/` holds the self-hosted typefaces, Fraunces and DM Sans (SIL Open Font License). Leave them as they are.
+
+## Colours
+
+Colours are variables at the top of `styles.css`. The default is "Gallery" (off-white and black). To try another, add `data-theme="navy"`, `"forest"` or `"sky"` to the `<html>` tag in `index.html`, and change the `theme-color` meta in the page heads to match.

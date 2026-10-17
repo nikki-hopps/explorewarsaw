@@ -3,101 +3,95 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Warsaw Viewpoints: 50 views of Warsaw loved by locals · Explore Warsaw</title>
+  <title>Warsaw Viewpoints: 50 views of Warsaw loved by locals · explore.warsaw</title>
   <meta name="description" content="The first guide to the best viewpoints of Warsaw: 50 rooftops, cafés and lookouts, by an expat who lives here. Hardcover, e-book or both.">
-  <meta name="theme-color" content="#07080d">
+  <meta name="theme-color" content="#f7f6f3">
   <link rel="canonical" href="https://www.explorewarsawguide.com/">
   <meta property="og:title" content="Warsaw Viewpoints: 50 views of Warsaw loved by locals">
   <meta property="og:description" content="The best rooftops, cafés and lookouts in Warsaw, in one guide. Hardcover, e-book or both.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.explorewarsawguide.com/">
-  <!-- TODO: add <meta property="og:image" content="https://www.explorewarsawguide.com/assets/hero.jpg"> once the photo is in assets/ -->
-  <link rel="preload" href="assets/fonts/jost-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/jost-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <meta property="og:image" content="https://www.explorewarsawguide.com/assets/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="hero">
-    <div class="hero-bg" id="hero-bg" aria-hidden="true"></div>
-    <header class="wrap top">
-      <a class="mark" href="#top"><em>explore</em> WARSAW</a>
-      <nav aria-label="Main">
-        <a class="opt" href="#inside">Look inside</a>
-        <a class="opt" href="#reviews">Reviews</a>
-      </nav>
-    </header>
-    <div class="wrap hero-main" id="top">
-      <form class="card" id="buy-form">
-        <p class="eyebrow">By @explore.warsaw</p>
-        <h1>50 views of Warsaw, <em>loved by locals.</em></h1>
-        <fieldset class="eds">
-          <legend class="sr">Edition</legend>
-          <!-- Each edition has its own Stripe Payment Link: paste it into data-link. -->
-          <label class="chip"><input type="radio" name="edition" value="bundle" checked data-price="27,99 €" data-link="https://buy.stripe.com/4gMeV561ubgG7OqdeM7ss02" data-note="Ships across Europe in 2 to 3 days. Your e-book link arrives by email."><span>Hardcover + e-book</span></label>
-          <label class="chip"><input type="radio" name="edition" value="hardcover" data-price="19,99 €" data-link="https://buy.stripe.com/28EfZ9fC4acCd8Ka2A7ss00" data-note="Ships across Europe in 2 to 3 days."><span>Hardcover</span></label>
-          <label class="chip"><input type="radio" name="edition" value="ebook" data-price="19,99 €" data-link="https://buy.stripe.com/7sY7sDgG8fwW5GigqY7ss01" data-note="Instant access. Your download link arrives by email."><span>E-book</span></label>
-        </fieldset>
-        <p class="note" id="note" aria-live="polite"></p>
-        <div class="row">
-          <span class="price" id="total"></span>
-          <a class="btn" id="checkout" href="#top" role="button">Checkout</a>
-        </div>
-        <p class="fine">Secure payment by Stripe · Price includes VAT</p>
-      </form>
-    </div>
-  </div>
+  <header class="top"><div class="wrap">
+    <a class="mark" href="#top" aria-label="explore.warsaw, home">explore<i>.</i>warsaw</a>
+    <nav aria-label="Sections"><a href="#story" data-nav="story">The book</a><a href="#buy" data-nav="buy">Shop</a><a href="#proof" data-nav="proof">Reviews</a><a class="btn sm" href="#buy">Buy</a></nav>
+  </div></header>
 
   <main>
-    <section class="section" id="inside" aria-labelledby="inside-h">
-      <div class="wrap">
-        <p class="eyebrow">The first Warsaw viewpoints guide</p>
-        <h2 id="inside-h">From the famous viewpoints to the ones <em>off the beaten path.</em></h2>
-        <p class="lede">Cafés, restaurants, lookouts and observation decks, with addresses, opening times and an online map, written by an expat who lives in Warsaw. The first batch of the hardcover is limited.</p>
-        <ul class="facts">
-          <li><b>50</b>Viewpoints</li>
-          <li><b>120</b>Pages</li>
-          <li>Digital map included</li>
-        </ul>
-        <ul class="shots">
-          <li><div class="frame"><div class="ph">E-book</div><img src="assets/ebook.jpg" alt="The e-book on a phone" loading="lazy" decoding="async"></div><p class="cap">E-book</p></li>
-          <li><div class="frame"><div class="ph">Bundle</div><img src="assets/bundle.jpg" alt="The hardcover book with the e-book on a phone" loading="lazy" decoding="async"></div><p class="cap">Hardcover + e-book</p></li>
-          <li><div class="frame"><div class="ph">Hardcover</div><img src="assets/book.jpg" alt="The hardcover book held in a hand" loading="lazy" decoding="async"></div><p class="cap">Hardcover</p></li>
-          <li><div class="frame"><div class="ph">Inside</div><img src="assets/inside.jpg" alt="A page spread from the book" loading="lazy" decoding="async"></div><p class="cap">Inside</p></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" id="reviews" aria-labelledby="rev-h" style="padding-top:0">
-      <div class="wrap">
-        <h2 id="rev-h" class="sr">Reviews</h2>
-        <div class="quotes">
-          <figure class="quote"><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>As an expat living in Warsaw for over seven years, I've discovered many hidden gems that are often overlooked. I highly recommend getting a copy to explore them.</blockquote><figcaption>Ram</figcaption></figure>
-          <figure class="quote"><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>I'm from Sweden and I'm living in Warsaw just for six months so I got it as a memory and something to look through when I'll miss Warsaw back home.</blockquote><figcaption>Customer from Sweden</figcaption></figure>
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">The first Warsaw viewpoints guide</p>
+          <h1>50 views of Warsaw, <em>loved by locals.</em></h1>
+          <p class="lede">The best rooftops, cafés and lookouts in the city, gathered in one book by an expat who lives here.</p>
+          <div class="hero-cta"><a class="btn" href="#buy">Get the book<span class="from">&nbsp;· from 19,99 €</span></a><a class="btn ghost" href="#story">See inside</a></div>
+          <ul class="facts"><li><b>50</b>Places</li><li><b>120</b>Pages</li><li>Digital map included</li></ul>
+        </div>
+        <div class="art">
+          <div class="arch"><img src="assets/img/hands.webp" alt="Hands holding the Warsaw Viewpoints hardcover" width="728" height="837" fetchpriority="high"></div>
+          <img class="phone" src="assets/img/phone.webp" alt="The e-book on a phone" width="564" height="1115">
         </div>
       </div>
     </section>
+
+    <section class="strip" id="story" aria-label="A look at the book"><div class="track"><figure><img src="assets/img/strip-cover.jpg" alt="The hardcover held up against the Warsaw skyline" width="373" height="480" loading="lazy" decoding="async"></figure><figure><img src="assets/img/strip-flight.jpg" alt="The book on an aeroplane tray table" width="360" height="480" loading="lazy" decoding="async"></figure><figure><img src="assets/img/strip-vistula.jpg" alt="A spread of the book: Vistula Boulevards" width="563" height="480" loading="lazy" decoding="async"></figure><figure><img src="assets/img/strip-gift.jpg" alt="The book wrapped with a handwritten tag and thank-you stickers" width="378" height="480" loading="lazy" decoding="async"></figure><figure><img src="assets/img/strip-hotel.jpg" alt="The book on a glass table next to a coffee" width="432" height="480" loading="lazy" decoding="async"></figure><figure><img src="assets/img/strip-wework.jpg" alt="A spread of the book: WeWork Warsaw Grzybowska" width="636" height="480" loading="lazy" decoding="async"></figure><figure class="dup" aria-hidden="true"><img src="assets/img/strip-cover.jpg" alt="" width="373" height="480" loading="lazy" decoding="async"></figure><figure class="dup" aria-hidden="true"><img src="assets/img/strip-flight.jpg" alt="" width="360" height="480" loading="lazy" decoding="async"></figure><figure class="dup" aria-hidden="true"><img src="assets/img/strip-vistula.jpg" alt="" width="563" height="480" loading="lazy" decoding="async"></figure><figure class="dup" aria-hidden="true"><img src="assets/img/strip-gift.jpg" alt="" width="378" height="480" loading="lazy" decoding="async"></figure><figure class="dup" aria-hidden="true"><img src="assets/img/strip-hotel.jpg" alt="" width="432" height="480" loading="lazy" decoding="async"></figure><figure class="dup" aria-hidden="true"><img src="assets/img/strip-wework.jpg" alt="" width="636" height="480" loading="lazy" decoding="async"></figure></div></section>
+
+    <section class="shop" id="buy" aria-labelledby="shop-h"><div class="wrap">
+      <div class="shop-head"><h2 id="shop-h">Choose <em>your copy</em></h2></div>
+      <div class="cards">
+        <article class="pcard">
+          <div class="pimg b"><img src="assets/img/hands.webp" alt="" width="728" height="837" loading="lazy"></div>
+          <div class="pbody"><h3>Hardcover</h3><p>120 pages. Ships across Europe in 2 to 3 days.</p><div class="pprice"><b>19,99 €</b></div><a class="btn block" href="https://buy.stripe.com/28EfZ9fC4acCd8Ka2A7ss00" rel="noopener">Buy hardcover</a></div>
+        </article>
+        <article class="pcard best">
+          <span class="ribbon">Best value · save 11,99 €</span>
+          <div class="pimg d"><img class="h" src="assets/img/hands.webp" alt="" width="728" height="837" loading="lazy"><img class="f" src="assets/img/phone.webp" alt="" width="564" height="1115" loading="lazy"></div>
+          <div class="pbody"><h3>Hardcover + e-book</h3><p>The book to hold and the e-book on your phone. Ships in 2 to 3 days; the e-book link arrives by email.</p><div class="pprice"><b>27,99 €</b><s><span class="sr">Instead of </span>39,98 €</s></div><a class="btn block" href="https://buy.stripe.com/4gMeV561ubgG7OqdeM7ss02" rel="noopener">Buy both</a></div>
+        </article>
+        <article class="pcard">
+          <div class="pimg p"><img src="assets/img/phone.webp" alt="" width="564" height="1115" loading="lazy"></div>
+          <div class="pbody"><h3>E-book</h3><p>Instant access. Your download link arrives by email.</p><div class="pprice"><b>19,99 €</b></div><a class="btn block" href="https://buy.stripe.com/7sY7sDgG8fwW5GigqY7ss01" rel="noopener">Buy e-book</a></div>
+        </article>
+      </div>
+      <div class="assure">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7M7 19a1.6 1.6 0 1 0 0-.01M17 19a1.6 1.6 0 1 0 0-.01"/></svg>Ships across Europe in 2 to 3 days</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11h14v9H5zM8 11V8a4 4 0 0 1 8 0v3"/></svg>Secure payment by Stripe · price includes VAT</span>
+      </div>
+    </div></section>
+
+    <section class="proof" id="proof" aria-labelledby="rev-h"><div class="wrap">
+      <div class="proof-head"><h2 id="rev-h">What <em>readers say</em></h2><span class="muted">★★★★★ from readers</span></div>
+      <div class="quotes">
+        <figure class="quote"><div class="st" aria-label="5 stars">★★★★★</div><blockquote>As an expat living in Warsaw for over seven years, I've discovered many hidden gems that are often overlooked. I highly recommend getting a copy to explore them.</blockquote><figcaption>Ram</figcaption></figure>
+        <figure class="quote"><div class="st" aria-label="5 stars">★★★★★</div><blockquote>I'm from Sweden and I'm living in Warsaw just for six months so I got it as a memory and something to look through when I'll miss Warsaw back home.</blockquote><figcaption>Customer from Sweden</figcaption></figure>
+        <figure class="quote"><div class="st" aria-label="5 stars">★★★★★</div><blockquote>My brother will be very happy with this present for his trip to Warsaw next month :)</blockquote><figcaption>Iris</figcaption></figure>
+        <figure class="quote"><div class="st" aria-label="5 stars">★★★★★</div><blockquote>I have already got my copy, thanks! Very quality job, didn't even know there are so many cool viewpoints to see in Warsaw.</blockquote><figcaption>Erwin</figcaption></figure>
+      </div>
+    </div></section>
   </main>
 
-  <footer class="foot">
-    <div class="wrap">
-      <a class="mark" href="#top"><em>explore</em> WARSAW</a>
-      <p>Warsaw, Poland · Warsaw Viewpoints</p>
-      <nav aria-label="Follow">
-        <!-- TODO: confirm both profile links -->
-        <a href="https://www.instagram.com/explore.warsaw/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.tiktok.com/@explore.warsaw" target="_blank" rel="noopener">TikTok</a>
-      </nav>
-      <nav aria-label="Legal">
-        <a href="terms.html">Terms &amp; conditions</a>
-        <a href="privacy.html">Privacy policy</a>
-        <a href="shipping.html">Shipping &amp; payment</a>
-        <a href="returns.html">Returns</a>
-        <button class="link-btn" type="button" id="cookie-settings">Cookie settings</button>
-      </nav>
-      <p>© <span id="year"></span> Explore Warsaw · <a id="mail" href="mailto:contactexplorewarsaw@gmail.com">contactexplorewarsaw@gmail.com</a></p>
-      <p class="small">This is the official website of @explore.warsaw. Copying or using our content without permission is prohibited.</p>
-    </div>
-  </footer>
+  <footer class="foot"><div class="wrap">
+    <span>© <span id="year"></span> explore.warsaw · <a id="mail" href="mailto:contactexplorewarsaw@gmail.com">contactexplorewarsaw@gmail.com</a></span>
+    <nav class="legal" aria-label="Legal">
+      <!-- TODO: confirm both profile links -->
+      <a href="https://www.instagram.com/explore.warsaw/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@explore.warsaw" target="_blank" rel="noopener">TikTok</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="shipping.html">Shipping &amp; payment</a>
+      <a href="returns.html">Returns</a>
+      <button class="link-btn" type="button" id="cookie-settings">Cookie settings</button>
+    </nav>
+    <p class="small">This is the official website of @explore.warsaw. Copying or using our content without permission is prohibited.</p>
+  </div></footer>
+
+  <div class="sticky" id="sticky" hidden><span><strong>Warsaw Viewpoints</strong> · from 19,99 €</span><a class="btn sm" href="#buy">Shop</a></div>
 
   <script src="config.js"></script>
   <script src="app.js"></script>

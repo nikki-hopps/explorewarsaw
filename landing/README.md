@@ -7,12 +7,12 @@ landing/
   index.html      the page (edit the text directly)
   privacy.html    privacy policy (paste your existing text)
   terms.html      terms of sale and returns (paste your existing text)
-  styles.css      the design (night skyline, one glass card; Jost font in assets/fonts)
+  styles.css      the design (colours and sizes are variables at the top; fonts in assets/fonts)
   thanks.html     where buyers land after paying (shows the e-book link)
   shipping.html, returns.html, terms.html, privacy.html   legal pages to fill in
-  app.js          gallery, edition picker, checkout button, cookie banner
+  app.js          section highlighting in the top bar, mobile Shop bar, cookie banner
   config.js       optional analytics
-  assets/         your photos (see assets/README.md)
+  assets/         photos in assets/img, fonts in assets/fonts (see assets/README.md)
 ```
 
 Preview: open `landing/index.html` in a browser.
@@ -33,9 +33,9 @@ For each one, in the Stripe Dashboard:
 3. **After payment:** choose *Don't show confirmation page* and redirect to `https://www.explorewarsawguide.com/thanks.html?session_id={CHECKOUT_SESSION_ID}` (type `{CHECKOUT_SESSION_ID}` exactly like that). Use the same address for all three links.
 4. **Create link.** Copy the `https://buy.stripe.com/...` address.
 5. Open the link's detail page. The address bar contains its id, `plink_...`. Note it for the e-book and the bundle (see the e-book delivery section).
-6. Paste each `buy.stripe.com` address into `data-link` of the matching `<input name="edition">` in `index.html`, and check that `data-price` and the visible price match Stripe.
+6. Paste each `buy.stripe.com` address into the `href` of the matching Buy button (the three `.pcard` blocks) in `index.html`, and check that the visible price matches Stripe.
 
-Test in **Stripe test mode** first (the toggle in the Dashboard): create the links in test mode, pay with the card `4242 4242 4242 4242`, then repeat in live mode. Until a link is pasted, the button reads "Checkout opens soon".
+Test in **Stripe test mode** first (the toggle in the Dashboard): create the links in test mode, pay with the card `4242 4242 4242 4242`, then repeat in live mode. 
 
 The gift card on your old shop is not on this page. It needs its own way to deliver a code, so tell me if you want it.
 
