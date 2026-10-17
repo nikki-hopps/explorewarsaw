@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Explore Warsaw: the book</title>
+  <meta name="description" content="A pocket guide to Warsaw for people who live here or are about to. Order the paperback or the e-book.">
+  <meta name="theme-color" content="#f5f0e8">
+  <link rel="canonical" href="https://explorewarsaw.guide/">
+  <meta property="og:title" content="Explore Warsaw: the book">
+  <meta property="og:description" content="A pocket guide to Warsaw for people who live here or are about to.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://explorewarsaw.guide/">
+  <!-- TODO: add <meta property="og:image" content="https://explorewarsaw.guide/assets/cover.jpg"> once the photo exists -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="wrap top">
+    <a class="mark" href="#top">Explore<span>Warsaw</span></a>
+    <nav aria-label="Main">
+      <a href="#inside">Inside</a>
+      <a href="#buy">Buy</a>
+      <a href="#faq">Questions</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- 1. Hero -->
+    <section class="wrap hero">
+      <div>
+        <p class="eyebrow">A pocket guide for the curious expat</p>
+        <h1>Explore Warsaw, one weekend at a time.</h1>
+        <p class="lede">The places, habits and small discoveries that make this city feel like yours. Written by someone who found them the slow way.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#buy">Order the book</a>
+          <span class="price" id="hero-price">from 79 PLN</span>
+        </div>
+      </div>
+      <div class="frame" id="hero-frame">
+        <div class="ph">Cover photo<br><span class="small">assets/cover.jpg</span></div>
+        <img src="assets/cover.jpg" alt="The Explore Warsaw book, front cover">
+      </div>
+    </section>
+
+    <!-- 2. Product views -->
+    <section class="section" aria-labelledby="look-h">
+      <div class="wrap">
+        <h2 id="look-h">Take a closer look</h2>
+        <div class="gallery">
+          <div class="frame stage" id="g-stage">
+            <div class="ph" id="g-ph">Photo<br><span class="small">add images to assets/</span></div>
+            <img id="g-img" alt="">
+          </div>
+          <ul class="thumbs" id="g-thumbs">
+            <li><button class="thumb" type="button" aria-pressed="true" data-src="assets/cover.jpg" data-alt="The book, front cover" aria-label="Front cover"><span class="frame"><span class="ph small">Cover</span><img src="assets/cover.jpg" alt=""></span></button></li>
+            <li><button class="thumb" type="button" aria-pressed="false" data-src="assets/spread.jpg" data-alt="An open page spread" aria-label="Page spread"><span class="frame"><span class="ph small">Spread</span><img src="assets/spread.jpg" alt=""></span></button></li>
+            <li><button class="thumb" type="button" aria-pressed="false" data-src="assets/in-hand.jpg" data-alt="The book held in a hand on a Warsaw street" aria-label="In hand"><span class="frame"><span class="ph small">In hand</span><img src="assets/in-hand.jpg" alt=""></span></button></li>
+            <li><button class="thumb" type="button" aria-pressed="false" data-src="assets/detail.jpg" data-alt="Detail of the binding and paper" aria-label="Detail"><span class="frame"><span class="ph small">Detail</span><img src="assets/detail.jpg" alt=""></span></button></li>
+            <li><button class="thumb" type="button" aria-pressed="false" data-src="assets/back.jpg" data-alt="The book, back cover" aria-label="Back cover"><span class="frame"><span class="ph small">Back</span><img src="assets/back.jpg" alt=""></span></button></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Inside -->
+    <section class="section" id="inside" aria-labelledby="inside-h">
+      <div class="wrap">
+        <h2 id="inside-h">What you will find inside</h2>
+        <div class="inside">
+          <div><h3>Neighbourhoods</h3><p>Where to wander, eat and linger in each part of the city, with the stories behind them.</p></div>
+          <div><h3>Everyday Warsaw</h3><p>The practical bits: getting around, local habits, and the phrases that actually help.</p></div>
+          <div><h3>Weekends</h3><p>Easy plans for the days you have free, from slow mornings to evenings out.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Buy -->
+    <section class="section" id="buy" aria-labelledby="buy-h">
+      <div class="wrap buy">
+        <div>
+          <p class="eyebrow">Order</p>
+          <h2 id="buy-h">Bring it home</h2>
+          <p class="muted">Choose your edition and pay securely with Stripe. You get a receipt by email straight away.</p>
+        </div>
+        <form class="panel" id="buy-form" action="#" onsubmit="return false">
+          <fieldset class="editions">
+            <legend>Edition</legend>
+            <!-- Each edition has its own Stripe Payment Link. Paste yours into data-link. -->
+            <label class="edition">
+              <input type="radio" name="edition" value="paperback" checked data-price="79 PLN" data-link="">
+              <strong>Paperback</strong><span class="p">79 PLN</span>
+              <span class="n">Ships within Poland in 2 to 4 working days.</span>
+            </label>
+            <label class="edition">
+              <input type="radio" name="edition" value="ebook" data-price="49 PLN" data-link="">
+              <strong>E-book</strong><span class="p">49 PLN</span>
+              <span class="n">PDF and EPUB, delivered by email after payment.</span>
+            </label>
+          </fieldset>
+          <div class="total"><span class="muted">Total</span><span class="big" id="total">79 PLN</span></div>
+          <a class="btn" id="checkout" href="#buy" role="button">Checkout with Stripe</a>
+          <ul class="assure">
+            <li>Secure payment by Stripe: cards, Apple Pay, Google Pay, BLIK</li>
+            <li>Price includes VAT. Invoice on request.</li>
+            <li>Returns and withdrawal: see <a href="terms.html">terms of sale</a></li>
+          </ul>
+        </form>
+      </div>
+    </section>
+
+    <!-- 5. Author -->
+    <section class="section" aria-labelledby="author-h">
+      <div class="wrap author">
+        <div class="frame"><div class="ph">Author photo</div><img src="assets/author.jpg" alt="The author"></div>
+        <div>
+          <h2 id="author-h">About the author</h2>
+          <p class="muted">A few honest sentences about who you are, how long you have lived in Warsaw, and why you wrote this book.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Questions -->
+    <section class="section" id="faq" aria-labelledby="faq-h">
+      <div class="wrap">
+        <h2 id="faq-h">Questions</h2>
+        <details><summary>How long does delivery take?</summary><p>Paperbacks ship within Poland in 2 to 4 working days. E-books arrive by email within minutes of payment.</p></details>
+        <details><summary>Can I get an invoice?</summary><p>Yes. Write to the address below with your order and company details and an invoice follows.</p></details>
+        <details><summary>Can I return the book?</summary><p>You have the right to withdraw from the purchase. The full conditions are in the <a href="terms.html">terms of sale</a>.</p></details>
+        <details><summary>Do you ship outside Poland?</summary><p>Tell us where you are at <a id="faq-mail" href="#">our email</a> and we will confirm the cost.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <span>© <span id="year"></span> Explore Warsaw · <a id="mail" href="mailto:hello@explorewarsaw.guide">hello@explorewarsaw.guide</a></span>
+      <nav aria-label="Legal">
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms of sale</a>
+        <button class="link-btn" type="button" id="cookie-settings">Cookie settings</button>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
