@@ -98,6 +98,12 @@ Options researched: own photos (best), licensed stock, paid timelapses (e.g. Kur
 - Netlify chosen for hosting. E-book delivery now covers both the e-book and the bundle (comma-separated Payment Link ids). 8 automated tests.
 - Lesson: seeing the real shop changed the design brief more than any amount of guessing.
 
+### 12. Three directions, then one
+- The luxury redesign still did not feel right: too much content, no single memorable idea. Instead of a fourth guess, three stripped-down directions were shown side by side (Lamplight, Cinema, Gallery).
+- Chosen: **B, Cinema.** A full-screen night skyline with one glass card holding the title, the edition choice and checkout. Everything else is quiet and below.
+- The typeface was rejected, so six candidates were shown in the same card (Jost, Outfit, Manrope, Fraunces, Playfair Display, Bodoni Moda) for a pick.
+- Lesson: when taste is the unknown, show options and let the owner point, instead of iterating on a guess.
+
 ## Prompts that worked
 - Keep the same room, camera angle and composition; change only one thing at a time.
 - Describe lighting physically: cool dusk light from the window, warm pool of light from the lamp, matching shadows.
