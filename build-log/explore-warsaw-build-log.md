@@ -80,6 +80,12 @@ Options researched: own photos (best), licensed stock, paid timelapses (e.g. Kur
 - Tested with Playwright on desktop and phone sizes: all four hotspots open the right panel.
 - **Gotcha:** the room images available to Claude's session were 199×112 previews. The full-size file must be downloaded from Canva and added to `site/assets/`.
 
+### 9. Pivot: a lightweight book landing page for explorewarsaw.guide
+- Goal: drop Ecwid, keep product views and checkout, add a cookie banner and legal pages, make it minimal and cozy. Stripe Payment Links for checkout, no web fonts or trackers.
+- Requirement added: **automatic e-book delivery with a 72-hour expiring link.** That needs a small backend, so the page got Cloudflare Pages Functions: a Stripe webhook (signature verified), a signed expiring token, a private R2 bucket and a download endpoint with a 10-download cap.
+- 7 automated tests cover the token expiry, tamper checks, the Stripe signature, duplicate emails and path tricks.
+- Constraint found: the domain is registered through Ecwid, so DNS and transfer must be sorted before launch.
+
 ## Prompts that worked
 - Keep the same room, camera angle and composition; change only one thing at a time.
 - Describe lighting physically: cool dusk light from the window, warm pool of light from the lamp, matching shadows.

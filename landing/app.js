@@ -53,6 +53,7 @@
         btn.href = "#buy"; btn.setAttribute("aria-disabled", "true"); btn.textContent = "Checkout opens soon";
       }
     }
+    form.addEventListener("submit", (e) => e.preventDefault());
     radios.forEach((r) => r.addEventListener("change", update));
     update();
     const lowest = Math.min(...radios.map((r) => parseFloat(r.dataset.price)));
