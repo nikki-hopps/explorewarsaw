@@ -1,0 +1,4 @@
+# Netlify settings: publish the landing page and run the e-book delivery functions.
+[build]
+  publish = "landing"
+  functions = "netlify/functions"

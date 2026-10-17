@@ -1,6 +1,6 @@
 # Book landing page
 
-A single-page, no-build site for selling the book at explorewarsaw.guide. Plain HTML, CSS and a little JavaScript. No web fonts, no trackers, no third-party requests except Stripe at checkout.
+A single-page, no-build site for selling the book at www.explorewarsaw.com. Plain HTML, CSS and a little JavaScript. No web fonts, no trackers, no third-party requests except Stripe at checkout.
 
 ```
 landing/
@@ -30,18 +30,19 @@ E-book delivery: a Payment Link alone does not send a file. Either send the file
 
 ## Automatic e-book delivery (72-hour link)
 
-How it works: the buyer pays through the e-book Payment Link, Stripe calls `functions/api/stripe-webhook.js`, which checks Stripe's signature and emails a signed link that works for 72 hours. The thank-you page shows the same link at once. The files live in private storage and are only served through `functions/api/download.js` (10 downloads per purchase).
+How it works: the buyer pays through the e-book Payment Link, Stripe calls the webhook function, which checks Stripe's signature and emails a signed link that works for 72 hours. The thank-you page shows the same link at once. The files live in private storage and are served only through the download function (10 downloads per purchase).
 
-This needs a host that runs functions. The code is written for **Cloudflare Pages** (Functions, R2 storage, KV).
+The core code is in `landing/functions/` and has automated tests (`npm test` inside `landing/`, Node 20 or newer). Small wrappers in `netlify/` run it on **Netlify** (Functions + Blobs). The same code also runs on Cloudflare Pages Functions (R2 + KV).
 
-1. Create a Cloudflare Pages project from this repo. Build command: none. Output directory: `landing`.
-2. Create an **R2 bucket** (private) and upload the e-book as PDF and EPUB. Bind it to the project as `EBOOKS`.
-3. Create a **KV namespace** and bind it as `DELIVERIES`. It stops duplicate emails and counts downloads.
-4. In Stripe, create the e-book Payment Link. Under *After payment* use `https://YOUR-DOMAIN/thanks.html?session_id={CHECKOUT_SESSION_ID}`. Note its id (`plink_...`).
-5. In Stripe, add a webhook endpoint `https://YOUR-DOMAIN/api/stripe-webhook` for `checkout.session.completed` and `checkout.session.async_payment_succeeded`. Copy its signing secret.
-6. Create a **restricted Stripe key** that can only read Checkout Sessions.
-7. Sign up with an email sender such as Resend and verify your domain (this needs DNS access).
-8. Add these as encrypted environment variables in the Pages project. Never commit them:
+### Set up on Netlify
+
+1. Netlify: Add new site, Import from GitHub, choose this repo. `netlify.toml` already sets the publish folder (`landing`) and the functions folder. Netlify installs `@netlify/blobs` automatically.
+2. Put the e-book files in the private Blobs store named `ebooks` (Netlify CLI: `netlify blobs:set ebooks book.pdf --input ./book.pdf`, and the same for the EPUB; run `netlify blobs:set --help` if the flags differ).
+3. In Stripe, create the e-book Payment Link. Under *After payment* use `https://www.explorewarsaw.com/thanks.html?session_id={CHECKOUT_SESSION_ID}`. Note its id (`plink_...`).
+4. In Stripe, add a webhook endpoint `https://www.explorewarsaw.com/api/stripe-webhook` for `checkout.session.completed` and `checkout.session.async_payment_succeeded`. Copy its signing secret.
+5. Create a **restricted Stripe key** that can only read Checkout Sessions.
+6. Sign up with an email sender such as Resend and verify your domain with the DNS records it gives you.
+7. In Netlify: Site configuration, Environment variables. Never commit these:
 
 | Variable | Value |
 |---|---|
@@ -49,14 +50,16 @@ This needs a host that runs functions. The code is written for **Cloudflare Page
 | `STRIPE_READ_KEY` | the restricted key (`rk_...`) |
 | `EBOOK_PAYMENT_LINK_ID` | the e-book link id (`plink_...`) |
 | `DOWNLOAD_SIGNING_SECRET` | a long random string, e.g. `openssl rand -hex 32` |
-| `SITE_URL` | `https://explorewarsaw.guide` (no trailing slash) |
+| `SITE_URL` | `https://www.explorewarsaw.com` (no trailing slash) |
 | `EMAIL_API_KEY` | your email provider key |
-| `MAIL_FROM` | e.g. `Explore Warsaw <orders@explorewarsaw.guide>` |
-| `EBOOK_PDF_KEY` / `EBOOK_EPUB_KEY` | the file names in the R2 bucket |
+| `MAIL_FROM` | e.g. `Explore Warsaw <orders@explorewarsaw.com>` |
+| `EBOOK_PDF_KEY` / `EBOOK_EPUB_KEY` | the key names you used in step 2 |
 
-9. Test with Stripe **test mode** first: make a test purchase, check the email, the thank-you page, the 72-hour expiry and the download limit. Then switch to live mode.
+8. Test in Stripe **test mode** first: a test purchase, the email, the thank-you page, the 72-hour expiry and the download limit. Then switch Stripe to live mode.
 
-Run the automated checks with `npm test` in `landing/` (needs Node 20 or newer).
+### Domain: www.explorewarsaw.com
+
+Buy it at Netlify Domains (simplest: DNS and HTTPS are automatic) or at any registrar and point it at Netlify. In Netlify Domain management, make `www.explorewarsaw.com` the primary domain so the bare `explorewarsaw.com` redirects to it. Turn on two-factor login on the registrar.
 
 ## Privacy policy, terms and cookie banner
 
@@ -71,4 +74,4 @@ Run the automated checks with `npm test` in `landing/` (needs Node 20 or newer).
 - [ ] Paste both Stripe Payment Links
 - [ ] Paste the privacy policy and terms of sale
 - [ ] Set your real contact email (footer in all three pages)
-- [ ] Point explorewarsaw.guide to the host you choose
+- [ ] Point www.explorewarsaw.com to the host you choose
