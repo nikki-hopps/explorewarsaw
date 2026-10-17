@@ -86,6 +86,11 @@ Options researched: own photos (best), licensed stock, paid timelapses (e.g. Kur
 - 7 automated tests cover the token expiry, tamper checks, the Stripe signature, duplicate emails and path tricks.
 - Constraint found: the domain is registered through Ecwid, so DNS and transfer must be sorted before launch.
 
+### 10. Mobile pass (most traffic will be phones)
+- Audited the landing page at seven phone and tablet sizes with Playwright. Found: sideways overflow at 320 px, header and footer links and FAQ rows under 44 px, a cookie banner covering the main button, and awkward gallery thumbnails.
+- Fixed: compact header with a pill "Buy", bigger tap targets, a smaller cookie banner, a scrollable and swipeable gallery, hero text and button before the photo, and a sticky "Order" bar.
+- Lesson: the first sticky-bar version hid as soon as the top of the buy section peeked in. It now tracks the checkout panel itself.
+
 ## Prompts that worked
 - Keep the same room, camera angle and composition; change only one thing at a time.
 - Describe lighting physically: cool dusk light from the window, warm pool of light from the lamp, matching shadows.

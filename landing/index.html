@@ -18,9 +18,9 @@
   <header class="wrap top">
     <a class="mark" href="#top">Explore<span>Warsaw</span></a>
     <nav aria-label="Main">
-      <a href="#inside">Inside</a>
-      <a href="#buy">Buy</a>
-      <a href="#faq">Questions</a>
+      <a class="opt" href="#inside">Inside</a>
+      <a class="nav-buy" href="#buy">Buy</a>
+      <a class="opt" href="#faq">Questions</a>
     </nav>
   </header>
 
@@ -38,7 +38,7 @@
       </div>
       <div class="frame" id="hero-frame">
         <div class="ph">Cover photo<br><span class="small">assets/cover.jpg</span></div>
-        <img src="assets/cover.jpg" alt="The Explore Warsaw book, front cover">
+        <img src="assets/cover.jpg" alt="The Explore Warsaw book, front cover" fetchpriority="high" decoding="async">
       </div>
     </section>
 
@@ -52,11 +52,11 @@
             <img id="g-img" alt="">
           </div>
           <ul class="thumbs" id="g-thumbs">
-            <li><button class="thumb" type="button" aria-pressed="true" data-src="assets/cover.jpg" data-alt="The book, front cover" aria-label="Front cover"><span class="frame"><span class="ph small">Cover</span><img src="assets/cover.jpg" alt=""></span></button></li>
-            <li><button class="thumb" type="button" aria-pressed="false" data-src="assets/spread.jpg" data-alt="An open page spread" aria-label="Page spread"><span class="frame"><span class="ph small">Spread</span><img src="assets/spread.jpg" alt=""></span></button></li>
-            <li><button class="thumb" type="button" aria-pressed="false" data-src="assets/in-hand.jpg" data-alt="The book held in a hand on a Warsaw street" aria-label="In hand"><span class="frame"><span class="ph small">In hand</span><img src="assets/in-hand.jpg" alt=""></span></button></li>
-            <li><button class="thumb" type="button" aria-pressed="false" data-src="assets/detail.jpg" data-alt="Detail of the binding and paper" aria-label="Detail"><span class="frame"><span class="ph small">Detail</span><img src="assets/detail.jpg" alt=""></span></button></li>
-            <li><button class="thumb" type="button" aria-pressed="false" data-src="assets/back.jpg" data-alt="The book, back cover" aria-label="Back cover"><span class="frame"><span class="ph small">Back</span><img src="assets/back.jpg" alt=""></span></button></li>
+            <li><button class="thumb" type="button" aria-pressed="true" data-src="assets/cover.jpg" data-alt="The book, front cover" aria-label="Front cover"><span class="frame"><span class="ph small">Cover</span><img src="assets/cover.jpg" alt="" loading="lazy" decoding="async"></span></button></li>
+            <li><button class="thumb" type="button" aria-pressed="false" data-src="assets/spread.jpg" data-alt="An open page spread" aria-label="Page spread"><span class="frame"><span class="ph small">Spread</span><img src="assets/spread.jpg" alt="" loading="lazy" decoding="async"></span></button></li>
+            <li><button class="thumb" type="button" aria-pressed="false" data-src="assets/in-hand.jpg" data-alt="The book held in a hand on a Warsaw street" aria-label="In hand"><span class="frame"><span class="ph small">In hand</span><img src="assets/in-hand.jpg" alt="" loading="lazy" decoding="async"></span></button></li>
+            <li><button class="thumb" type="button" aria-pressed="false" data-src="assets/detail.jpg" data-alt="Detail of the binding and paper" aria-label="Detail"><span class="frame"><span class="ph small">Detail</span><img src="assets/detail.jpg" alt="" loading="lazy" decoding="async"></span></button></li>
+            <li><button class="thumb" type="button" aria-pressed="false" data-src="assets/back.jpg" data-alt="The book, back cover" aria-label="Back cover"><span class="frame"><span class="ph small">Back</span><img src="assets/back.jpg" alt="" loading="lazy" decoding="async"></span></button></li>
           </ul>
         </div>
       </div>
@@ -111,7 +111,7 @@
     <!-- 5. Author -->
     <section class="section" aria-labelledby="author-h">
       <div class="wrap author">
-        <div class="frame"><div class="ph">Author photo</div><img src="assets/author.jpg" alt="The author"></div>
+        <div class="frame"><div class="ph">Author photo</div><img src="assets/author.jpg" alt="The author" loading="lazy" decoding="async"></div>
         <div>
           <h2 id="author-h">About the author</h2>
           <p class="muted">A few honest sentences about who you are, how long you have lived in Warsaw, and why you wrote this book.</p>
@@ -141,6 +141,11 @@
       </nav>
     </div>
   </footer>
+
+  <div class="sticky-buy" id="sticky-buy" hidden>
+    <span><strong>Explore Warsaw</strong><br><span class="muted small" id="sticky-price"></span></span>
+    <a class="btn" href="#buy">Order</a>
+  </div>
 
   <script src="config.js"></script>
   <script src="app.js"></script>

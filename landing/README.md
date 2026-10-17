@@ -67,6 +67,12 @@ Buy it at Netlify Domains (simplest: DNS and HTTPS are automatic) or at any regi
 - "Cookie settings" in the footer reopens the banner.
 - `privacy.html` and `terms.html` contain headings and clearly marked placeholders. Paste the texts from your current site and have them reviewed before launch. The wording must match what the page actually does.
 
+## Mobile
+
+The page is designed phone-first. Checked at 320, 360, 375, 390 and 412 px wide, a 768 px tablet and a landscape phone: no sideways scrolling, 44 px minimum tap targets for buttons and navigation, a compact cookie banner, a swipeable photo gallery, and a sticky "Order" bar that appears once the main button has scrolled away and disappears when the checkout panel is on screen.
+
+Phone data is the limit, so keep photos small: JPEG, about 80 percent quality, under 400 KB each, and no wider than 2000 px. Gallery photos below the first screen load lazily.
+
 ## Before launch
 
 - [ ] Replace the placeholder title, price, copy and author text in `index.html`

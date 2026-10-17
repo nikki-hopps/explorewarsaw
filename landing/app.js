@@ -30,10 +30,23 @@
     stageImg.addEventListener("error", () => { stageImg.hidden = true; });
     stageImg.addEventListener("load", () => { stageImg.hidden = false; });
     const thumbs = [...document.querySelectorAll(".thumb")];
-    thumbs.forEach((t) => t.addEventListener("click", () => {
-      thumbs.forEach((o) => o.setAttribute("aria-pressed", String(o === t)));
-      show(t.dataset.src, t.dataset.alt);
-    }));
+    let current = 0;
+    const select = (i, scroll) => {
+      current = (i + thumbs.length) % thumbs.length;
+      thumbs.forEach((o, n) => o.setAttribute("aria-pressed", String(n === current)));
+      show(thumbs[current].dataset.src, thumbs[current].dataset.alt);
+      if (scroll) thumbs[current].scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+    };
+    thumbs.forEach((t, i) => t.addEventListener("click", () => select(i, false)));
+    // Phones: swipe the big photo left or right
+    const stage = $("g-stage");
+    let x0 = null;
+    stage.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener("touchend", (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) select(current + (dx < 0 ? 1 : -1), true);
+    }, { passive: true });
     thumbs[0] && show(thumbs[0].dataset.src, thumbs[0].dataset.alt);
   }
 
@@ -82,7 +95,7 @@
   }
 
   const banner = document.createElement("div");
-  banner.className = "consent"; banner.hidden = true;
+  banner.className = "consent" + (cfg.analyticsSrc ? " two" : ""); banner.hidden = true;
   banner.setAttribute("role", "dialog"); banner.setAttribute("aria-label", "Cookie settings");
   const text = document.createElement("p");
   text.append(
@@ -108,4 +121,19 @@
   if (choice === "all") loadAnalytics();
   if (!choice) banner.hidden = false;
   document.querySelectorAll("#cookie-settings").forEach((b) => b.addEventListener("click", () => { banner.hidden = false; ok.focus(); }));
+
+  // ---------- Phones: a sticky "Order" bar once the main button has scrolled away ----------
+  const sticky = $("sticky-buy");
+  if (sticky) {
+    const heroBtn = document.querySelector(".hero-cta .btn"), buySection = $("buy-form"); // hide the bar once the checkout panel itself is on screen
+    let heroOut = false, buyIn = false;
+    const sync = () => { sticky.hidden = !(heroOut && !buyIn && banner.hidden); };
+    const watch = (el, set) => { if (el) new IntersectionObserver(([e]) => { set(e.isIntersecting); sync(); }).observe(el); };
+    watch(heroBtn, (v) => { heroOut = !v; });
+    watch(buySection, (v) => { buyIn = v; });
+    new MutationObserver(sync).observe(banner, { attributes: true, attributeFilter: ["hidden"] });
+    const sp = $("sticky-price"), hp2 = $("hero-price");
+    if (sp && hp2) sp.textContent = hp2.textContent;
+    sync();
+  }
 })();
