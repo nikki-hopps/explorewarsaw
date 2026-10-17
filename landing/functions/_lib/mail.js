@@ -7,7 +7,7 @@ export async function sendDownloadEmail({ env, to, url, expires }) {
     body: JSON.stringify({
       from: env.MAIL_FROM,
       to: [to],
-      subject: "Your Explore Warsaw e-book download",
+      subject: "Your Warsaw Viewpoints e-book download",
       text: `Thank you for your order.\n\nDownload your e-book here:\n${url}\n\nThis link works until ${when} (72 hours after your purchase). If it expires, reply to this email and we will send a new one.\n`,
     }),
   });

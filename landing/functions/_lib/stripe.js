@@ -27,9 +27,11 @@ export async function verifyStripeSignature(rawBody, header, secret, now = Date.
 // Only these two events mean "the money arrived".
 export const PAID_EVENTS = ["checkout.session.completed", "checkout.session.async_payment_succeeded"];
 
-// A session counts as an e-book sale only if it is paid and came from the e-book Payment Link.
+// A session counts as an e-book sale only if it is paid and came from one of the Payment Links that include the e-book
+// (the e-book itself and the hardcover + e-book bundle). EBOOK_PAYMENT_LINK_IDS is a comma-separated list of plink_ ids.
 export function isEbookSale(session, env) {
-  return !!session && session.payment_status === "paid" && !!env.EBOOK_PAYMENT_LINK_ID && session.payment_link === env.EBOOK_PAYMENT_LINK_ID;
+  const ids = String(env.EBOOK_PAYMENT_LINK_IDS || env.EBOOK_PAYMENT_LINK_ID || "").split(",").map((x) => x.trim()).filter(Boolean);
+  return !!session && session.payment_status === "paid" && ids.includes(session.payment_link);
 }
 
 export async function getCheckoutSession(id, apiKey) {

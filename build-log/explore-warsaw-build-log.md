@@ -91,6 +91,13 @@ Options researched: own photos (best), licensed stock, paid timelapses (e.g. Kur
 - Fixed: compact header with a pill "Buy", bigger tap targets, a smaller cookie banner, a scrollable and swipeable gallery, hero text and button before the photo, and a sticky "Order" bar.
 - Lesson: the first sticky-bar version hid as soon as the top of the buy section peeked in. It now tracks the checkout panel itself.
 
+### 11. Real content and a luxury redesign
+- The first landing page felt like a template. Brief: modern, comfortable, luxury.
+- The user shared a screenshot of the existing shop: **Warsaw Viewpoints, 50 views of Warsaw loved by locals**, ebook 19,99 €, hardcover 19,99 €, bundle 27,99 €, reviews, shipping across Europe in 2 to 3 days. The page was rebuilt around that real content.
+- New look: warm black, ivory text, rose-gold accent, Cormorant Garamond headlines and Jost body text, hosted on the site (no Google requests), a full-bleed night skyline hero, hairline details and gentle fade-in on scroll.
+- Netlify chosen for hosting. E-book delivery now covers both the e-book and the bundle (comma-separated Payment Link ids). 8 automated tests.
+- Lesson: seeing the real shop changed the design brief more than any amount of guessing.
+
 ## Prompts that worked
 - Keep the same room, camera angle and composition; change only one thing at a time.
 - Describe lighting physically: cool dusk light from the window, warm pool of light from the lamp, matching shadows.

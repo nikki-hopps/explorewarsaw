@@ -36,7 +36,7 @@ export async function onRequestGet({ request, env }) {
   return new Response(object.body, {
     headers: {
       "Content-Type": TYPES[format],
-      "Content-Disposition": `attachment; filename="explore-warsaw.${format}"`,
+      "Content-Disposition": `attachment; filename="warsaw-viewpoints.${format}"`,
       "Cache-Control": "no-store",
       "X-Content-Type-Options": "nosniff",
     },

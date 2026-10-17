@@ -1,13 +1,15 @@
 # Book landing page
 
-A single-page, no-build site for selling the book at www.explorewarsawguide.com. Plain HTML, CSS and a little JavaScript. No web fonts, no trackers, no third-party requests except Stripe at checkout.
+A single-page, no-build site for selling the book at www.explorewarsawguide.com. Plain HTML, CSS and a little JavaScript. Fonts are hosted on the site itself, with no trackers and no third-party requests except Stripe at checkout.
 
 ```
 landing/
   index.html      the page (edit the text directly)
   privacy.html    privacy policy (paste your existing text)
   terms.html      terms of sale and returns (paste your existing text)
-  styles.css      the design
+  styles.css      the design (dark, warm, editorial; fonts in assets/fonts)
+  thanks.html     where buyers land after paying (shows the e-book link)
+  shipping.html, returns.html, terms.html, privacy.html   legal pages to fill in
   app.js          gallery, edition picker, checkout button, cookie banner
   config.js       optional analytics
   assets/         your photos (see assets/README.md)
@@ -17,16 +19,25 @@ Preview: open `landing/index.html` in a browser.
 
 ## Connect Stripe checkout
 
-The page uses **Stripe Payment Links**, so no server and no secret keys are needed.
+The page uses **Stripe Payment Links**, so no server and no secret keys are needed to take payments. You need **three** links, one per edition: *Hardcover + e-book* (27,99 €), *Hardcover* (19,99 €) and *E-book* (19,99 €).
 
-1. In the Stripe Dashboard, create a Product for each edition (paperback, e-book) with its price in PLN.
-2. For each, create a **Payment Link**. For the paperback, turn on shipping address collection and choose the countries you ship to. Turn on automatic tax if you use Stripe Tax.
-3. Under *After payment*, redirect to your thank-you page (or show Stripe's confirmation).
-4. In `index.html`, paste each link into the `data-link` of the matching `<input name="edition">`, and set `data-price` and the visible price to match Stripe.
+For each one, in the Stripe Dashboard:
 
-Until a link is pasted, the button reads "Checkout opens soon".
+1. **Product catalogue, Add product.** Name (for example "Warsaw Viewpoints, hardcover"), description, a photo, and a **one-time** price in **EUR**.
+2. **Payment links, New.** Pick the product. Then set:
+   - *Collect customers' addresses: Billing and shipping* for the hardcover and the bundle, with the countries you ship to. Add a **shipping rate** (for example free, or a flat fee) under *Shipping options*.
+   - Nothing to collect for the e-book except the email address.
+   - *Collect tax automatically* if you use Stripe Tax, or set the tax rate to match your accountant's advice. The page says prices include VAT.
+   - *Let customers adjust quantity* if you want people to buy several copies.
+   - *Require customers to accept your terms*: add the link to your terms page in Stripe settings first.
+3. **After payment:** choose *Don't show confirmation page* and redirect to `https://www.explorewarsawguide.com/thanks.html?session_id={CHECKOUT_SESSION_ID}` (type `{CHECKOUT_SESSION_ID}` exactly like that). Use the same address for all three links.
+4. **Create link.** Copy the `https://buy.stripe.com/...` address.
+5. Open the link's detail page. The address bar contains its id, `plink_...`. Note it for the e-book and the bundle (see the e-book delivery section).
+6. Paste each `buy.stripe.com` address into `data-link` of the matching `<input name="edition">` in `index.html`, and check that `data-price` and the visible price match Stripe.
 
-E-book delivery: a Payment Link alone does not send a file. Either send the files by email from the payment notification, or use a Stripe-connected delivery tool. Never link to the file from a public page.
+Test in **Stripe test mode** first (the toggle in the Dashboard): create the links in test mode, pay with the card `4242 4242 4242 4242`, then repeat in live mode. Until a link is pasted, the button reads "Checkout opens soon".
+
+The gift card on your old shop is not on this page. It needs its own way to deliver a code, so tell me if you want it.
 
 ## Automatic e-book delivery (72-hour link)
 
@@ -48,7 +59,7 @@ The core code is in `landing/functions/` and has automated tests (`npm test` ins
 |---|---|
 | `STRIPE_WEBHOOK_SECRET` | the webhook signing secret (`whsec_...`) |
 | `STRIPE_READ_KEY` | the restricted key (`rk_...`) |
-| `EBOOK_PAYMENT_LINK_ID` | the e-book link id (`plink_...`) |
+| `EBOOK_PAYMENT_LINK_IDS` | the ids of the Payment Links that include the e-book: the e-book and the bundle, comma separated (`plink_aaa,plink_bbb`) |
 | `DOWNLOAD_SIGNING_SECRET` | a long random string, e.g. `openssl rand -hex 32` |
 | `SITE_URL` | `https://www.explorewarsawguide.com` (no trailing slash) |
 | `EMAIL_API_KEY` | your email provider key |
@@ -75,7 +86,8 @@ Phone data is the limit, so keep photos small: JPEG, about 80 percent quality, u
 
 ## Before launch
 
-- [ ] Replace the placeholder title, price, copy and author text in `index.html`
+- [ ] Add the real photos (see `assets/README.md`) and check the copy, prices and links in `index.html`
+- [ ] Confirm the Instagram and TikTok links and the contact email
 - [ ] Add photos to `assets/`
 - [ ] Paste both Stripe Payment Links
 - [ ] Paste the privacy policy and terms of sale
