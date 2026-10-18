@@ -300,4 +300,32 @@ p { margin: 0 0 .8em; }
 @keyframes tick-pop { from { transform: scale(.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 @keyframes tick-draw { to { stroke-dashoffset: 0; } }
 @media (prefers-reduced-motion: reduce) { .tick circle, .tick path { animation: none; } .tick path { stroke-dashoffset: 0; } }
-.doc .ship { max-width: 30rem; margin: 18px auto 6px; padding: 14px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); color: var(--ink); font-size: .95rem; }
+
+/* thank-you page: order summary with the product picture */
+.thanks .lead { font-size: 1.05rem; margin-bottom: 28px; }
+.order { display: grid; grid-template-columns: 250px 1fr; gap: clamp(22px, 5vw, 44px); align-items: center; max-width: 700px; margin: 0 auto; padding: 28px; text-align: left; background: var(--card); border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 14px 40px rgba(20,12,30,.06); animation: order-in .6s .15s ease-out both; }
+.order[hidden] { display: none; }
+.order-art .art { width: 100%; }
+.order .art .arch img { animation: none; }
+.order .arch .o-solo { width: 54%; bottom: 7%; }
+.order[data-kind="ebook"] .o-book, .order[data-kind="ebook"] .o-phone, .order[data-kind="book"] .o-solo, .order[data-kind="book"] .o-phone, .order[data-kind="bundle"] .o-solo { display: none; }
+.order .art .phone { left: auto; right: -12%; bottom: 8%; width: 30%; transform: rotate(7deg); }
+.order .art::before { display: none; }
+.order-body h2 { font-size: calc(var(--ds) * 1.5rem); margin-bottom: .7em; }
+.next { list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 12px; }
+.next li { display: flex; gap: 12px; align-items: flex-start; font-size: .95rem; line-height: 1.45; }
+.next .dot { flex: none; width: 22px; height: 22px; border-radius: 50%; margin-top: 1px; border: 1.5px solid var(--line); background: var(--bg); }
+.next .done .dot { background: var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 70% no-repeat; border-color: var(--ok); }
+.order-body .btn { min-height: 50px; }
+.order-body .small { margin: 10px 0 0; }
+.thanks .back { margin-top: 26px; }
+@keyframes order-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@media (max-width: 640px) {
+  .order { grid-template-columns: 1fr; padding: 22px 20px; text-align: left; }
+  .order-art .art { width: min(60%, 220px); margin: 0 auto 10px; }
+  .order-body .btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .order { animation: none; } }
+.order-body .eyebrow { margin-bottom: 4px; }
+.order-body h2.o-title { margin: 0 0 .7em; line-height: 1.1; }
+.o-title::before { content: "Warsaw Viewpoints"; display: block; font: 600 .68rem/1.4 var(--fb); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
