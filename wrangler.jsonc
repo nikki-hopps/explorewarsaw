@@ -12,6 +12,11 @@
     // Private bucket holding the e-book files (public access stays off).
     { "binding": "EBOOKS", "bucket_name": "book-explore-warsaw-2024" }
   ],
+  // Keep request logs on so problems with downloads and emails can be traced.
+  "observability": {
+    "logs": { "enabled": true, "head_sampling_rate": 1, "invocation_logs": true, "persist": true },
+    "traces": { "enabled": false, "head_sampling_rate": 1, "persist": true }
+  },
   "kv_namespaces": [
     // Download counter and "email already sent" markers. Wrangler creates it on the first deploy.
     { "binding": "DELIVERIES" }
