@@ -104,6 +104,14 @@ Options researched: own photos (best), licensed stock, paid timelapses (e.g. Kur
 - The typeface was rejected, so six candidates were shown in the same card (Jost, Outfit, Manrope, Fraunces, Playfair Display, Bodoni Moda) for a pick.
 - Lesson: when taste is the unknown, show options and let the owner point, instead of iterating on a guess.
 
+### 13. From Cinema to the final page, and a move to Cloudflare
+- The dark Cinema direction was dropped after the research pass. The final page is a warm off-white "Gallery" look: Fraunces headlines, DM Sans body, the pink logo, four real reviews, and a slow, draggable photo strip made from the owner's own photos.
+- Handwritten pink notes (Caveat) point at the useful facts. They were moved, cut and re-placed several times; fewer and better placed won.
+- Mobile was audited at five widths: tap targets, tiny text, sticky bar, cookie banner (a real bug: it stayed on screen after being tapped), strip movement.
+- Netlify credits ran low because every push was a 15-credit production deploy. New rule: preview in private artifacts, push in batches, and mark housekeeping commits with [skip ci].
+- E-book delivery moved to Cloudflare: the e-book sits in a private R2 bucket, the site runs as a Worker with static assets, and the same signed 72-hour link code runs unchanged. 12 automated tests.
+- Lesson: ask where the cost is (here, deploy count) before optimising anything else.
+
 ## Prompts that worked
 - Keep the same room, camera angle and composition; change only one thing at a time.
 - Describe lighting physically: cool dusk light from the window, warm pool of light from the lamp, matching shadows.
