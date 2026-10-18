@@ -6,7 +6,10 @@ const reply = (body, status = 200) => new Response(body, { status });
 
 export async function onRequestPost({ request, env }) {
   const raw = await request.text(); // the signature covers the exact raw bytes
-  if (!(await verifyStripeSignature(raw, request.headers.get("stripe-signature"), env.STRIPE_WEBHOOK_SECRET))) return reply("Bad signature", 400);
+  if (!(await verifyStripeSignature(raw, request.headers.get("stripe-signature"), env.STRIPE_WEBHOOK_SECRET))) {
+    console.error("stripe webhook: signature check failed (is STRIPE_WEBHOOK_SECRET the one shown for this endpoint?)");
+    return reply("Bad signature", 400);
+  }
 
   let event;
   try { event = JSON.parse(raw); } catch { return reply("Bad payload", 400); }
@@ -25,7 +28,8 @@ export async function onRequestPost({ request, env }) {
   const { token, expires } = await issueToken(env.DOWNLOAD_SIGNING_SECRET, session.id);
   try {
     await sendDownloadEmail({ env, to, url: `${env.SITE_URL}/api/download?t=${token}`, expires });
-  } catch {
+  } catch (err) {
+    console.error("e-book email failed:", err && err.message);
     return reply("Email failed", 502); // tell Stripe to retry later
   }
   if (env.DELIVERIES) await env.DELIVERIES.put(sentKey, "1", { expirationTtl: 60 * 60 * 24 * 14 });

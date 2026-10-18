@@ -11,5 +11,8 @@ export async function sendDownloadEmail({ env, to, url, expires }) {
       text: `Thank you for your order.\n\nDownload your e-book here:\n${url}\n\nThis link works until ${when} (72 hours after your purchase). If it expires, reply to this email and we will send a new one.\n`,
     }),
   });
-  if (!res.ok) throw new Error(`Email provider returned ${res.status}`);
+  if (!res.ok) {
+    const detail = (await res.text().catch(() => "")).slice(0, 300); // the provider says why (wrong key, unverified sender, ...)
+    throw new Error(`Email provider returned ${res.status}: ${detail}`);
+  }
 }
