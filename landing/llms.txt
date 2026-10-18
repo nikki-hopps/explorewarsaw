@@ -7,7 +7,7 @@
 - [E-book, 19,99 EUR (personal download link by email, valid 72 hours)](https://buy.stripe.com/7sY7sDgG8fwW5GigqY7ss01)
 - [Hardcover + e-book bundle, 27,99 EUR (free shipping across Europe)](https://buy.stripe.com/4gMeV561ubgG7OqdeM7ss02)
 
-Prices are in euro and include VAT. Payment is processed by Stripe.
+Prices are in euro. Payment is processed by Stripe.
 
 ## Pages
 - [Home](https://www.explorewarsawguide.com/): what the book is, photos, editions, prices, reader reviews

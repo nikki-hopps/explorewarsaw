@@ -333,3 +333,9 @@ p { margin: 0 0 .8em; }
 .doc.legal-text p { max-width: 42em; }
 .doc.legal-text h2 { font-size: calc(var(--ds) * 1.15rem); margin-top: 1.6em; }
 .doc.legal-text p a { display: inline; padding: 0; }
+.doc .upd { margin: -.6em 0 1.6em; color: var(--muted); font-size: .85rem; }
+.doc.legal-text ul { max-width: 42em; padding-left: 1.2em; margin: 0 0 1em; }
+.doc.legal-text li { margin: 0 0 .45em; }
+.doc.legal-text li em { color: var(--muted); font-style: normal; }
+.doc.legal-text blockquote { margin: 0 0 1em; padding: 16px 18px; max-width: 42em; background: var(--card); border: 1px solid var(--line); border-radius: 14px; line-height: 1.9; }
+.doc.legal-text li a, .doc.legal-text blockquote a { display: inline; padding: 0; }
