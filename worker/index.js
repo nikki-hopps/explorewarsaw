@@ -12,7 +12,13 @@ const ROUTES = {
 
 export default {
   async fetch(request, env, ctx) {
-    const { pathname } = new URL(request.url);
+    const url = new URL(request.url);
+    const { pathname } = url;
+    // The bare domain forwards to www, keeping the path and query.
+    if (url.hostname === "explorewarsawguide.com") {
+      url.hostname = "www.explorewarsawguide.com";
+      return Response.redirect(url.toString(), 301);
+    }
     const handler = ROUTES[`${request.method} ${pathname}`];
     if (handler) return handler({ request, env, waitUntil: ctx.waitUntil.bind(ctx) });
     if (pathname.startsWith("/api/")) return new Response("Not found", { status: 404 });

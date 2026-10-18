@@ -21,3 +21,13 @@ test("webhook only accepts POST and rejects a bad signature", async () => {
 test("unknown api paths are 404", async () => {
   assert.equal((await worker.fetch(new Request("https://site.test/api/other"), env, ctx)).status, 404);
 });
+
+test("the bare domain forwards to www and keeps the path", async () => {
+  const res = await worker.fetch(new Request("https://explorewarsawguide.com/thanks.html?session_id=cs_1"), env, ctx);
+  assert.equal(res.status, 301);
+  assert.equal(res.headers.get("location"), "https://www.explorewarsawguide.com/thanks.html?session_id=cs_1");
+});
+test("www and the test address are served normally", async () => {
+  const res = await worker.fetch(new Request("https://www.explorewarsawguide.com/privacy.html"), env, ctx);
+  assert.equal(await res.text(), "asset:/privacy.html");
+});

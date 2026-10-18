@@ -3,6 +3,11 @@
   "name": "explorewarsaw",
   "main": "worker/index.js",
   "compatibility_date": "2025-09-01",
+  // The real addresses. Cloudflare creates the DNS records for these itself.
+  "routes": [
+    { "pattern": "www.explorewarsawguide.com", "custom_domain": true },
+    { "pattern": "explorewarsawguide.com", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./landing",
     "binding": "ASSETS",
