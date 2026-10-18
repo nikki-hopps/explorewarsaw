@@ -15,7 +15,7 @@
   const STEPS = (kind, mailed) => {
     const s = [[true, "Payment received. Stripe has emailed you the receipt."]];
     if (kind !== "book") s.push([true, "Your e-book is ready: download it below." + (mailed ? " We have also emailed you the link." : "")]);
-    if (kind !== "ebook") s.push([false, "Your hardcover is being prepared."], [false, "It ships across Europe in 2 to 3 days."]);
+    if (kind !== "ebook") s.push([false, "Your hardcover is being prepared."], [false, "We dispatch it within 2 business days, and DHL delivers it in 2 to 4 business days."]);
     return s;
   };
 

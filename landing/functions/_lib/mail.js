@@ -11,7 +11,7 @@ export function buildDownloadEmail({ url, expires, kind = "ebook", site = "https
   const subject = "Your Warsaw Viewpoints e-book is ready";
   const preheader = "Thank you for your order. Your download link works for 72 hours.";
 
-  const shipText = bundle ? "\nYour hardcover\nIt is being prepared and ships across Europe in 2 to 3 days.\n" : "";
+  const shipText = bundle ? "\nYour hardcover\nWe dispatch it within 2 business days, and DHL delivers it in 2 to 4 business days.\n" : "";
   const text = `Thank you for your order!
 
 Your e-book "Warsaw Viewpoints: 50 views of Warsaw loved by locals" is ready.
@@ -56,7 +56,7 @@ TikTok: https://www.tiktok.com/@explore.warsaw
   </td></tr>
   <tr><td align="center" style="padding:0 36px 28px 36px;font:13px/1.55 ${FONT};color:#77776f">This link works for 72 hours, until <strong>${esc(when)}</strong>.<br>The file is large, so we suggest downloading on Wi-Fi.</td></tr>
 
-  ${bundle ? `<tr><td style="padding:0 36px 22px 36px"><div style="background:#f7f6f3;border-radius:14px;padding:18px 20px;font:15px/1.55 ${FONT};color:#2b2b2b">${h("Your hardcover")}It is being prepared and ships across Europe in <strong>2 to 3 days</strong>.</div></td></tr>` : ""}
+  ${bundle ? `<tr><td style="padding:0 36px 22px 36px"><div style="background:#f7f6f3;border-radius:14px;padding:18px 20px;font:15px/1.55 ${FONT};color:#2b2b2b">${h("Your hardcover")}We dispatch it within 2 business days, and DHL delivers it in <strong>2 to 4 business days</strong>.</div></td></tr>` : ""}
 
   ${row(`${h("Payment receipt and invoice")}Stripe sends your payment receipt in a separate email. If you need an invoice, reply to this email (it goes to <a href="mailto:${esc(contact)}" style="color:#121212">${esc(contact)}</a>) with your name or company name, address and VAT number (if you have one), and we will send it to you.`)}
   ${row(`${h("The link expired, or something is wrong?")}Just reply to this email. Your reply goes straight to <a href="mailto:${esc(contact)}" style="color:#121212">${esc(contact)}</a>, and we will sort it out.`)}
