@@ -17,6 +17,17 @@ landing/
 
 Preview: open `landing/index.html` in a browser.
 
+## Hosting (current setup)
+
+The site runs on **Cloudflare** (a Worker serving this folder as static files, plus the three `/api/` functions), not Netlify. Everything is configured in `wrangler.jsonc` at the repo root; every push to the production branch `landing-page` is built and published by Cloudflare (Workers & Pages, project `explorewarsaw`).
+
+- Live address: https://www.explorewarsawguide.com (the bare domain forwards to `www`). The domain's DNS is on Cloudflare; the registrar is GoDaddy.
+- The e-book PDF lives in the private R2 bucket `book-explore-warsaw-2024` under the name `warsaw-viewpoints.pdf`. Public access stays off.
+- Secrets are set in Cloudflare under the Worker's Settings, Variables and secrets (type Secret): `DOWNLOAD_SIGNING_SECRET`, `EBOOK_PAYMENT_LINK_IDS`, `EBOOK_PDF_KEY`, `SITE_URL`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_READ_KEY`, `EMAIL_API_KEY`, `MAIL_FROM`. A changed secret only takes effect after "Add variable and deploy".
+- If you ever create a new Payment Link that includes the e-book, add its `plink_` id to `EBOOK_PAYMENT_LINK_IDS`.
+- Housekeeping commits that should not trigger a build can carry `[skip ci]` in the message.
+- The Netlify project is disabled. The Netlify instructions below are kept only for reference.
+
 ## Connect Stripe checkout
 
 The page uses **Stripe Payment Links**, so no server and no secret keys are needed to take payments. You need **three** links, one per edition: *Hardcover + e-book* (27,99 €), *Hardcover* (19,99 €) and *E-book* (19,99 €).
