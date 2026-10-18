@@ -26,6 +26,7 @@ The site runs on **Cloudflare** (a Worker serving this folder as static files, p
 - Secrets are set in Cloudflare under the Worker's Settings, Variables and secrets (type Secret): `DOWNLOAD_SIGNING_SECRET`, `EBOOK_PAYMENT_LINK_IDS`, `EBOOK_PDF_KEY`, `SITE_URL`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_READ_KEY`, `EMAIL_API_KEY`, `MAIL_FROM`. A changed secret only takes effect after "Add variable and deploy".
 - If you ever create a new Payment Link that includes the e-book, add its `plink_` id to `EBOOK_PAYMENT_LINK_IDS`.
 - Housekeeping commits that should not trigger a build can carry `[skip ci]` in the message.
+- If builds ever stop starting after a push, check Settings, Builds: the Git repository row must show `nikki-hopps/explorewarsaw` (not "Connect") and the production branch must be `landing-page`.
 - The Netlify project is disabled. The Netlify instructions below are kept only for reference.
 
 ## Connect Stripe checkout
