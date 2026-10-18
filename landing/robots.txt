@@ -1,0 +1,6 @@
+# Everyone is welcome: search engines, AI assistants and shopping agents.
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://www.explorewarsawguide.com/sitemap.xml
