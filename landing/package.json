@@ -1,5 +1,5 @@
 {
   "private": true,
   "type": "module",
-  "scripts": { "test": "node --test functions/test/delivery.test.mjs" }
+  "scripts": { "test": "node --test functions/test/delivery.test.mjs functions/test/worker.test.mjs" }
 }

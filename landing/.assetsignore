@@ -1,0 +1,5 @@
+# Not part of the public site (Cloudflare skips these when it uploads the folder).
+functions
+package.json
+README.md
+.assetsignore

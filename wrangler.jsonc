@@ -1,0 +1,19 @@
+{
+  // Cloudflare Workers deployment: the landing page as static assets plus the e-book delivery API.
+  "name": "explorewarsaw",
+  "main": "worker/index.js",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./landing",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "r2_buckets": [
+    // Private bucket holding the e-book files (public access stays off).
+    { "binding": "EBOOKS", "bucket_name": "book-explore-warsaw-2024" }
+  ],
+  "kv_namespaces": [
+    // Download counter and "email already sent" markers. Wrangler creates it on the first deploy.
+    { "binding": "DELIVERIES" }
+  ]
+}
