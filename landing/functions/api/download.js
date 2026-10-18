@@ -22,7 +22,10 @@ export async function onRequestGet({ request, env }) {
     const links = Object.keys(files).filter((f) => files[f]).map((f) => `<p><a href="?t=${encodeURIComponent(t)}&f=${f}">Download ${f.toUpperCase()}</a></p>`).join("");
     return page(`<h1>Your e-book</h1>${links}<p style="color:#666;font-size:.9rem">This page works until ${escapeHtml(when)}.</p>`);
   }
-  if (!Object.hasOwn(TYPES, format) || !files[format]) return page("<h1>Not found</h1>", 404);
+  if (!Object.hasOwn(TYPES, format) || !files[format]) {
+    console.error(`download: no file name configured for "${format}" (is EBOOK_${String(format).toUpperCase()}_KEY set?)`);
+    return page("<h1>Not found</h1>", 404);
+  }
 
   if (env.DELIVERIES) {
     const k = `dl:${valid.sessionId}`;
@@ -32,7 +35,13 @@ export async function onRequestGet({ request, env }) {
   }
 
   const object = await env.EBOOKS.get(files[format]);
-  if (!object) return page("<h1>Not found</h1>", 404);
+  if (!object) {
+    // Help the owner fix a name mismatch: show exactly what we asked for and what the bucket holds.
+    let held = "unknown";
+    try { held = JSON.stringify(((await env.EBOOKS.list({ limit: 10 })).objects || []).map((o) => o.key)); } catch { /* ignore */ }
+    console.error(`download: bucket has no object named ${JSON.stringify(files[format])} (length ${files[format].length}). Bucket holds: ${held}`);
+    return page("<h1>Not found</h1>", 404);
+  }
   return new Response(object.body, {
     headers: {
       "Content-Type": TYPES[format],
