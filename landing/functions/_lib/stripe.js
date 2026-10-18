@@ -39,3 +39,12 @@ export async function getCheckoutSession(id, apiKey) {
   const res = await fetch(`https://api.stripe.com/v1/checkout/sessions/${id}`, { headers: { Authorization: `Bearer ${apiKey}` } });
   return res.ok ? res.json() : null;
 }
+
+// A paid order that has to be shipped carries a delivery address (older and newer Stripe API versions keep it in different places).
+export const needsShipping = (s) => !!(s && (s.shipping_details || (s.collected_information && s.collected_information.shipping_details)));
+
+// "ebook", "bundle" (hardcover + e-book, shipped) or "book" (hardcover only).
+export function orderKind(session, env) {
+  if (!isEbookSale(session, env)) return "book";
+  return needsShipping(session) ? "bundle" : "ebook";
+}

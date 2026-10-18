@@ -1,11 +1,8 @@
-import { getCheckoutSession, isEbookSale } from "../_lib/stripe.js";
+import { getCheckoutSession, isEbookSale, orderKind } from "../_lib/stripe.js";
 import { issueToken } from "../_lib/token.js";
 
 const json = (data, status = 200) =>
   new Response(JSON.stringify(data), { status, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
-
-// A paid order that has to be shipped carries a delivery address (older and newer Stripe API versions keep it in different places).
-const needsShipping = (s) => !!(s.shipping_details || (s.collected_information && s.collected_information.shipping_details));
 
 // The thank-you page calls this with the Checkout Session id from the URL, so it can show the right message
 // ("ebook", "bundle" or "book") and, for e-book orders, the download link at once.
@@ -16,5 +13,5 @@ export async function onRequestGet({ request, env }) {
   if (!session || session.payment_status !== "paid") return json({ error: "not_found" }, 404);
   if (!isEbookSale(session, env)) return json({ kind: "book" }); // hardcover only: nothing to download
   const { token, expires } = await issueToken(env.DOWNLOAD_SIGNING_SECRET, session.id);
-  return json({ kind: needsShipping(session) ? "bundle" : "ebook", url: `${env.SITE_URL}/api/download?t=${token}`, expires });
+  return json({ kind: orderKind(session, env), url: `${env.SITE_URL}/api/download?t=${token}`, expires });
 }

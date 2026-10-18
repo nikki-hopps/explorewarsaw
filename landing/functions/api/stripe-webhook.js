@@ -1,4 +1,4 @@
-import { verifyStripeSignature, PAID_EVENTS, isEbookSale } from "../_lib/stripe.js";
+import { verifyStripeSignature, PAID_EVENTS, isEbookSale, orderKind } from "../_lib/stripe.js";
 import { issueToken } from "../_lib/token.js";
 import { sendDownloadEmail } from "../_lib/mail.js";
 
@@ -27,7 +27,7 @@ export async function onRequestPost({ request, env }) {
 
   const { token, expires } = await issueToken(env.DOWNLOAD_SIGNING_SECRET, session.id);
   try {
-    await sendDownloadEmail({ env, to, url: `${env.SITE_URL}/api/download?t=${token}`, expires });
+    await sendDownloadEmail({ env, to, url: `${env.SITE_URL}/api/download?t=${token}`, expires, kind: orderKind(session, env) });
   } catch (err) {
     console.error("e-book email failed:", err && err.message);
     return reply("Email failed", 502); // tell Stripe to retry later

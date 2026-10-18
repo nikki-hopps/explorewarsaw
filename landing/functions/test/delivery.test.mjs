@@ -63,17 +63,22 @@ test("webhook: e-book sale emails one 72h link, and a retry does not email again
   assert.deepEqual(sent[0].body.to, ["reader@example.com"]);
   assert.match(sent[0].body.text, /https:\/\/www\.explorewarsawguide\.com\/api\/download\?t=/);
   assert.match(sent[0].body.text, /72 hours/);
+  assert.equal(sent[0].body.reply_to, "contactexplorewarsaw@gmail.com");
+  assert.match(sent[0].body.html, /Download your e-book/);
+  assert.match(sent[0].body.html, /invoice/i);
+  assert.doesNotMatch(sent[0].body.html, /Your hardcover/); // e-book only: no shipping box
 });
 
 test("webhook: the hardcover + e-book bundle also gets the e-book link, the hardcover alone does not", async () => {
   const sent = [];
   globalThis.fetch = async (url, init) => { sent.push(JSON.parse(init.body)); return new Response("{}", { status: 200 }); };
   const e = env({ DELIVERIES: kv() });
-  const bundle = event(paid({ id: "cs_test_bundle1", payment_link: "plink_bundle" }));
+  const bundle = event(paid({ id: "cs_test_bundle1", payment_link: "plink_bundle", shipping_details: { address: { country: "PL" } } }));
   assert.equal(await (await webhook({ request: await req(bundle), env: e })).text(), "Sent");
   const hardcover = event(paid({ id: "cs_test_hard1", payment_link: "plink_hardcover" }));
   assert.equal(await (await webhook({ request: await req(hardcover), env: e })).text(), "Not an e-book sale");
   assert.equal(sent.length, 1);
+  assert.match(sent[0].html, /Your hardcover/); // the bundle email also mentions the book
 });
 
 test("webhook: if the email provider fails, Stripe is told to retry", async () => {
