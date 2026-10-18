@@ -66,6 +66,8 @@ test("webhook: e-book sale emails one 72h link, and a retry does not email again
   assert.equal(sent[0].body.reply_to, "contactexplorewarsaw@gmail.com");
   assert.match(sent[0].body.html, /Download your e-book/);
   assert.match(sent[0].body.html, /invoice/i);
+  assert.match(sent[0].body.html, /contactexplorewarsaw@gmail\.com/);
+  assert.match(sent[0].body.text, /reply goes straight to contactexplorewarsaw@gmail\.com/);
   assert.doesNotMatch(sent[0].body.html, /Your hardcover/); // e-book only: no shipping box
 });
 

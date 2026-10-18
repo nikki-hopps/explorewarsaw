@@ -19,12 +19,12 @@ Your e-book "Warsaw Viewpoints: 50 views of Warsaw loved by locals" is ready.
 Download it here:
 ${url}
 
-This link works for 72 hours (until ${when}) and can be used up to 10 times. The file is large, so we suggest downloading on Wi-Fi. If the link expires, just reply to this email and we will send a new one.
+This link works for 72 hours (until ${when}) and can be used up to 10 times. The file is large, so we suggest downloading on Wi-Fi. If it expires, reply to this email and we will send a new one.
 ${shipText}
 Payment receipt and invoice
-Stripe sends your payment receipt in a separate email. If you need an invoice, reply to this email with your name or company name, address and VAT number (if you have one), and we will send it to you.
+Stripe sends your payment receipt in a separate email. If you need an invoice, reply to this email (it goes to ${contact}) with your name or company name, address and VAT number (if you have one), and we will send it to you.
 
-Questions? Just reply to this email, or write to ${contact}.
+Questions, or the link expired? Just reply to this email. Your reply goes straight to ${contact}.
 
 Enjoy exploring Warsaw!
 Nikol, explore.warsaw
@@ -52,14 +52,14 @@ TikTok: https://www.tiktok.com/@explore.warsaw
   <tr><td align="center" style="padding:6px 36px 26px 36px;font:16px/1.55 ${FONT};color:#55554f">Your e-book <strong style="color:#121212">Warsaw Viewpoints</strong> is ready.</td></tr>
 
   <tr><td align="center" style="padding:0 36px 12px 36px">
-    <a href="${esc(url)}" style="display:inline-block;background:#121212;color:#ffffff;text-decoration:none;font:600 14px/1 ${FONT};letter-spacing:.12em;text-transform:uppercase;padding:18px 34px;border-radius:99px">Download your e-book</a>
+    <a href="${esc(url)}" style="display:inline-block;background:#121212;color:#ffffff;text-decoration:none;font:600 13px/1.2 ${FONT};letter-spacing:.08em;text-transform:uppercase;padding:18px 28px;border-radius:99px;white-space:nowrap">Download your e-book</a>
   </td></tr>
   <tr><td align="center" style="padding:0 36px 28px 36px;font:13px/1.55 ${FONT};color:#77776f">This link works for 72 hours, until <strong>${esc(when)}</strong>.<br>The file is large, so we suggest downloading on Wi-Fi.</td></tr>
 
   ${bundle ? `<tr><td style="padding:0 36px 22px 36px"><div style="background:#f7f6f3;border-radius:14px;padding:18px 20px;font:15px/1.55 ${FONT};color:#2b2b2b">${h("Your hardcover")}It is being prepared and ships across Europe in <strong>2 to 3 days</strong>.</div></td></tr>` : ""}
 
-  ${row(`${h("Payment receipt and invoice")}Stripe sends your payment receipt in a separate email. If you need an invoice, reply to this email with your name or company name, address and VAT number (if you have one), and we will send it to you.`)}
-  ${row(`${h("The link expired, or something is wrong?")}Reply to this email and we will sort it out. You can also write to <a href="mailto:${esc(contact)}" style="color:#121212">${esc(contact)}</a>.`)}
+  ${row(`${h("Payment receipt and invoice")}Stripe sends your payment receipt in a separate email. If you need an invoice, reply to this email (it goes to <a href="mailto:${esc(contact)}" style="color:#121212">${esc(contact)}</a>) with your name or company name, address and VAT number (if you have one), and we will send it to you.`)}
+  ${row(`${h("The link expired, or something is wrong?")}Just reply to this email. Your reply goes straight to <a href="mailto:${esc(contact)}" style="color:#121212">${esc(contact)}</a>, and we will sort it out.`)}
 
   <tr><td style="padding:6px 36px 30px 36px;font:15px/1.6 ${FONT};color:#2b2b2b">Enjoy exploring Warsaw!<br><span style="font:italic 17px/1.6 ${SERIF}">Nikol, explore.warsaw</span></td></tr>
 
