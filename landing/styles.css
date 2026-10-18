@@ -329,3 +329,7 @@ p { margin: 0 0 .8em; }
 .order-body .eyebrow { margin-bottom: 4px; }
 .order-body h2.o-title { margin: 0 0 .7em; line-height: 1.1; }
 .o-title::before { content: "Warsaw Viewpoints"; display: block; font: 600 .68rem/1.4 var(--fb); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.doc .sub { margin: -.2em 0 1.4em; color: var(--muted); }
+.doc.legal-text p { max-width: 42em; }
+.doc.legal-text h2 { font-size: calc(var(--ds) * 1.15rem); margin-top: 1.6em; }
+.doc.legal-text p a { display: inline; padding: 0; }
