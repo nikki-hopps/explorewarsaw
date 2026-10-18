@@ -111,6 +111,8 @@ Options researched: own photos (best), licensed stock, paid timelapses (e.g. Kur
 - Netlify credits ran low because every push was a 15-credit production deploy. New rule: preview in private artifacts, push in batches, and mark housekeeping commits with [skip ci].
 - E-book delivery moved to Cloudflare: the e-book sits in a private R2 bucket, the site runs as a Worker with static assets, and the same signed 72-hour link code runs unchanged. 12 automated tests.
 - Lesson: ask where the cost is (here, deploy count) before optimising anything else.
+- Going live took four moves: nameservers from Netlify DNS to Cloudflare, the Worker attached to www with the bare domain forwarding, the old Netlify records removed, and Resend verified on the domain so the e-book email can go to any buyer (the test sender only reaches the account owner).
+- Debugging lesson: a hidden mismatch between a stored name and the real file name looks identical on screen. A short, boring file name beats a long pretty one.
 
 ## Prompts that worked
 - Keep the same room, camera angle and composition; change only one thing at a time.
