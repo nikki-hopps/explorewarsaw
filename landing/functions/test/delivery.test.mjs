@@ -82,13 +82,24 @@ test("webhook: if the email provider fails, Stripe is told to retry", async () =
   assert.equal(r.status, 502);
 });
 
-test("claim: gives a link for a paid e-book session, nothing for others", async () => {
+test("claim: says what was bought and only gives a link for e-book orders", async () => {
+  const ask = () => claim({ request: new Request("https://x/api/claim?session_id=cs_test_abc123"), env: env() });
   globalThis.fetch = async () => new Response(JSON.stringify(paid()), { status: 200 });
-  const ok = await claim({ request: new Request("https://x/api/claim?session_id=cs_test_abc123"), env: env() });
-  const data = await ok.json();
-  assert.match(data.url, /^https:\/\/www\.explorewarsawguide\.com\/api\/download\?t=/);
+  const ebook = await (await ask()).json();
+  assert.equal(ebook.kind, "ebook");
+  assert.match(ebook.url, /^https:\/\/www\.explorewarsawguide\.com\/api\/download\?t=/);
+  globalThis.fetch = async () => new Response(JSON.stringify(paid({ payment_link: "plink_bundle", shipping_details: { address: { country: "PL" } } })), { status: 200 });
+  const bundle = await (await ask()).json();
+  assert.equal(bundle.kind, "bundle");
+  assert.ok(bundle.url);
+  globalThis.fetch = async () => new Response(JSON.stringify(paid({ payment_link: "plink_bundle", collected_information: { shipping_details: { address: { country: "CZ" } } } })), { status: 200 });
+  assert.equal((await (await ask()).json()).kind, "bundle");
+  globalThis.fetch = async () => new Response(JSON.stringify(paid({ payment_link: "plink_hardcover", shipping_details: { address: { country: "DE" } } })), { status: 200 });
+  const book = await (await ask()).json();
+  assert.equal(book.kind, "book");
+  assert.equal(book.url, undefined);
   globalThis.fetch = async () => new Response(JSON.stringify(paid({ payment_status: "unpaid" })), { status: 200 });
-  assert.equal((await claim({ request: new Request("https://x/api/claim?session_id=cs_test_abc123"), env: env() })).status, 404);
+  assert.equal((await ask()).status, 404);
   assert.equal((await claim({ request: new Request("https://x/api/claim?session_id=../../etc"), env: env() })).status, 404);
 });
 

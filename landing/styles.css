@@ -300,3 +300,4 @@ p { margin: 0 0 .8em; }
 @keyframes tick-pop { from { transform: scale(.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 @keyframes tick-draw { to { stroke-dashoffset: 0; } }
 @media (prefers-reduced-motion: reduce) { .tick circle, .tick path { animation: none; } .tick path { stroke-dashoffset: 0; } }
+.doc .ship { max-width: 30rem; margin: 18px auto 6px; padding: 14px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); color: var(--ink); font-size: .95rem; }
